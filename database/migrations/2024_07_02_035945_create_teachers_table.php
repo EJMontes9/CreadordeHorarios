@@ -13,7 +13,21 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('ci')->unique();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->integer('age');
+            $table->string('gender');
+            $table->string('num_cellphone');
+            $table->string('email')->unique();
+            $table->string('dedication');
+            $table->string('contract_type');
+            $table->string('third_level_title');
+            $table->string('fourth_level_title');
+            $table->string('date_of_admission');
+            $table->string('career_assigned');
+            $table->string('cycle');
+            $table->string('career');
             $table->unsignedBigInteger('teaching_hours_id');
             $table->foreign('teaching_hours_id')->references('id')->on('teaching_hours');
             $table->timestamps();

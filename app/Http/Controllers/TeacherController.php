@@ -8,9 +8,14 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $teachers = Teacher::all();
+        $searchTerm = $request->input('search');
+        $teachers = Teacher::when($searchTerm, function ($query, $searchTerm) {
+            return $query->where('first_name', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('last_name', 'LIKE', "%{$searchTerm}%");
+        })->get();
+
         return view('teachers.index', compact('teachers'));
     }
 
@@ -32,10 +37,10 @@ class TeacherController extends Controller
     }
 
     public function edit(Teacher $teacher)
-{
-    $teachingHours = TeachingHour::all(); // Paso 1
-    return view('teachers.edit', compact('teacher', 'teachingHours')); // Paso 2
-}
+    {
+        $teachingHours = TeachingHour::all(); // Paso 1
+        return view('teachers.edit', compact('teacher', 'teachingHours')); // Paso 2
+    }
 
     public function update(Request $request, Teacher $teacher)
     {
