@@ -13,14 +13,15 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css','resources/js/app.js'])
 
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased" >
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen" style="background-image: url('{{ asset('svg/circle.svg') }}'); background-repeat: no-repeat; background-size: cover;">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->

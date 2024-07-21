@@ -13,10 +13,6 @@
         </div>
     </div>
 
-    <div class="w-16 h-16 bg-amber-700">
-        <h1>Hola</h1>
-    </div>
-
     <!-- component -->
 
 </x-app-layout>
