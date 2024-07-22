@@ -16,20 +16,27 @@ return new class extends Migration
             $table->string('ci')->unique();
             $table->string('first_name');
             $table->string('last_name');
+            $table->date('date_of_birth');
             $table->integer('age');
             $table->string('gender');
+            $table->string('nacionality');
             $table->string('num_cellphone');
             $table->string('email')->unique();
+            $table->string('email_ug')->unique();
             $table->string('dedication');
             $table->string('contract_type');
+            $table->string('den_puesto');
             $table->string('third_level_title');
             $table->string('fourth_level_title');
-            $table->string('date_of_admission');
-            $table->string('career_assigned');
-            $table->string('cycle');
+            $table->date('date_of_admission');
             $table->string('career');
-            $table->unsignedBigInteger('teaching_hours_id');
-            $table->foreign('teaching_hours_id')->references('id')->on('teaching_hours');
+            $table->string('rol');
+            $table->string('master_degree');
+            $table->string('doctorate');
+            $table->string('specialty');
+            $table->string('researcher');
+            $table->integer('contract_hours');
+            $table->boolean('afinity');
             $table->timestamps();
         });
     }
@@ -41,4 +48,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('teachers');
     }
+
 };
