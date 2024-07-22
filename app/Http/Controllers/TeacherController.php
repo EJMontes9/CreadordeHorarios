@@ -34,7 +34,8 @@ class TeacherController extends Controller
 
     public function show(Teacher $teacher)
     {
-        return view('teachers.show', compact('teacher'));
+        $otherOptions = ['1' => '1', '2' => '2', '3' => '3', 'none' => 'Ninguno'];
+        return view('teachers.show', compact('teacher', 'otherOptions'));
     }
 
     public function edit(Teacher $teacher)
