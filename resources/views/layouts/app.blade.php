@@ -9,10 +9,9 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        @vite('resources/css/app.css')
         @vite(['resources/css/app.css','resources/js/app.js'])
 
         <!-- Styles -->
@@ -20,9 +19,9 @@
     </head>
     <body class="font-sans antialiased" >
         <x-banner />
-
-        <div class="min-h-screen" style="background-image: url('{{ asset('svg/circle.svg') }}'); background-repeat: no-repeat; background-size: cover;">
             @livewire('navigation-menu')
+        <div class="bg-gray-100">
+
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -42,5 +41,6 @@
         @stack('modals')
 
         @livewireScripts
+    <x-footer />
     </body>
 </html>
