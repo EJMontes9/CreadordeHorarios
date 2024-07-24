@@ -70,7 +70,19 @@
                     value="{{ $teacher->nacionality ?? '' }}" required />
             </div>
         </div>
-        <div class="text-right">
+        <div class="flex justify-between mt-5">
+            <!-- Botón regresar a teachers.index -->
+            <a href="{{ route('teachers.index') }}"
+                class="bg-green-500 hover:bg-green-600 text-white font-bold px-2 rounded inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Icono de flecha hacia la izquierda -->
+                    <path fill-rule="evenodd"
+                        d="M10 19a9 9 0 110-18 9 9 0 010 18zm4.707-9.707a1 1 0 00-1.414-1.414L10 12.586 7.707 10.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l5-5z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span>Regresar</span>
+            </a>
+
             <x-button id="next-to-contact" type="button" class="mt-4">
                 {{ __('Siguiente') }}
             </x-button>
@@ -254,7 +266,7 @@
             <div class="flex flex-col w-1/3 mr-3">
                 <x-label for="period" :value="__('Periodo:')" />
                 <x-input id="period" class="block mt-1 w-full" type="text" name="period"
-                    value="{{ $teacher->period ?? '' }}" required/>
+                    value="{{ $teacher->period ?? '' }}" required />
             </div>
             <div class="flex flex-col w-1/3 mr-3">
                 <x-label for="teacher_schedule_hours" :value="__('Horas Docente Horario')" />
@@ -264,7 +276,7 @@
             <div class="flex flex-col w-1/3 mr-3">
                 <x-label for="class_preparation_hours" :value="__('Horas Preparación Clases:')" />
                 <x-input id="class_preparation_hours" class="block mt-1 w-full no-spin" type="number"
-                    name="class_preparation_hours" value="{{ $teacher->class_preparation_hours ?? '' }}" required/>
+                    name="class_preparation_hours" value="{{ $teacher->class_preparation_hours ?? '' }}" required />
             </div>
         </div>
 
@@ -464,100 +476,101 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-    const personalSection = document.getElementById('section-personal');
-    const contactSection = document.getElementById('section-contact');
-    const academicSection = document.getElementById('section-academic');
-    const planificationSection = document.getElementById('section-planification');
-    const nextToContactButton = document.getElementById('next-to-contact');
-    const prevToPersonalButton = document.getElementById('prev-to-personal');
-    const nextToAcademicButton = document.getElementById('next-to-academic');
-    const prevToContactButton = document.getElementById('prev-to-contact');
-    const nextToPlanificationButton = document.getElementById('next-to-planification');
-    const prevToAcademicButton = document.getElementById('prev-to-academic');
-    const submitFormButton = document.getElementById('submit-form');
+        const personalSection = document.getElementById('section-personal');
+        const contactSection = document.getElementById('section-contact');
+        const academicSection = document.getElementById('section-academic');
+        const planificationSection = document.getElementById('section-planification');
+        const nextToContactButton = document.getElementById('next-to-contact');
+        const prevToPersonalButton = document.getElementById('prev-to-personal');
+        const nextToAcademicButton = document.getElementById('next-to-academic');
+        const prevToContactButton = document.getElementById('prev-to-contact');
+        const nextToPlanificationButton = document.getElementById('next-to-planification');
+        const prevToAcademicButton = document.getElementById('prev-to-academic');
+        const submitFormButton = document.getElementById('submit-form');
 
-    function showSection(sectionToShow) {
-        personalSection.classList.add('hidden');
-        contactSection.classList.add('hidden');
-        academicSection.classList.add('hidden');
-        planificationSection.classList.add('hidden');
-        sectionToShow.classList.remove('hidden');
-    }
+        function showSection(sectionToShow) {
+            personalSection.classList.add('hidden');
+            contactSection.classList.add('hidden');
+            academicSection.classList.add('hidden');
+            planificationSection.classList.add('hidden');
+            sectionToShow.classList.remove('hidden');
+        }
 
-    function validateSection(section) {
-        const inputs = section.querySelectorAll('input[required], select[required]');
-        let valid = true;
+        function validateSection(section) {
+            const inputs = section.querySelectorAll('input[required], select[required]');
+            let valid = true;
 
-        inputs.forEach(input => {
-            if (!input.value.trim()) {
-                valid = false;
-                input.classList.add('border-red-500');
-                input.classList.remove('border-gray-300');
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    valid = false;
+                    input.classList.add('border-red-500');
+                    input.classList.remove('border-gray-300');
+                } else {
+                    input.classList.remove('border-red-500');
+                    input.classList.add('border-gray-300');
+                }
+            });
+
+            return valid;
+        }
+
+        nextToContactButton.addEventListener('click', function() {
+            if (validateSection(personalSection)) {
+                showSection(contactSection);
             } else {
-                input.classList.remove('border-red-500');
-                input.classList.add('border-gray-300');
+                alert(
+                    'Por favor, complete todos los campos requeridos en la sección de Información Personal.');
             }
         });
 
-        return valid;
-    }
+        prevToPersonalButton.addEventListener('click', function() {
+            showSection(personalSection);
+        });
 
-    nextToContactButton.addEventListener('click', function() {
-        if (validateSection(personalSection)) {
+        nextToAcademicButton.addEventListener('click', function() {
+            if (validateSection(contactSection)) {
+                showSection(academicSection);
+            } else {
+                alert(
+                    'Por favor, complete todos los campos requeridos en la sección de Información de Contactos.');
+            }
+        });
+
+        prevToContactButton.addEventListener('click', function() {
             showSection(contactSection);
-        } else {
-            alert('Por favor, complete todos los campos requeridos en la sección de Información Personal.');
-        }
-    });
+        });
 
-    prevToPersonalButton.addEventListener('click', function() {
-        showSection(personalSection);
-    });
+        nextToPlanificationButton.addEventListener('click', function() {
+            if (validateSection(academicSection)) {
+                showSection(planificationSection);
+            } else {
+                alert(
+                    'Por favor, complete todos los campos requeridos en la sección de Información Académica.');
+            }
+        });
 
-    nextToAcademicButton.addEventListener('click', function() {
-        if (validateSection(contactSection)) {
+        prevToAcademicButton.addEventListener('click', function() {
             showSection(academicSection);
+        });
+
+        submitFormButton.addEventListener('click', function() {
+            if (validateSection(planificationSection)) {
+                document.getElementById('form-all').submit();
+            } else {
+                alert(
+                    'Por favor, complete todos los campos requeridos en la sección de Información de Planificación.');
+            }
+        });
+    });
+
+    function validateEmail(input) {
+        const email = input.value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const errorId = input.id + '-error';
+        if (!emailRegex.test(email)) {
+            document.getElementById(errorId).classList.remove('hidden');
         } else {
-            alert('Por favor, complete todos los campos requeridos en la sección de Información de Contactos.');
+            document.getElementById(errorId).classList.add('hidden');
         }
-    });
-
-    prevToContactButton.addEventListener('click', function() {
-        showSection(contactSection);
-    });
-
-    nextToPlanificationButton.addEventListener('click', function() {
-        if (validateSection(academicSection)) {
-            showSection(planificationSection);
-        } else {
-            alert('Por favor, complete todos los campos requeridos en la sección de Información Académica.');
-        }
-    });
-
-    prevToAcademicButton.addEventListener('click', function() {
-        showSection(academicSection);
-    });
-
-    submitFormButton.addEventListener('click', function() {
-        if (validateSection(planificationSection)) {
-            document.getElementById('form-all').submit();
-        } else {
-            alert('Por favor, complete todos los campos requeridos en la sección de Información de Planificación.');
-        }
-    });
-});
-
-function validateEmail(input) {
-    const email = input.value;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const errorId = input.id + '-error';
-    if (!emailRegex.test(email)) {
-        document.getElementById(errorId).classList.remove('hidden');
-    } else {
-        document.getElementById(errorId).classList.add('hidden');
     }
-}
-
-
-
 </script>

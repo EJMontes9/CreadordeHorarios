@@ -4,8 +4,14 @@
             Crear Profesor
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 bg-white mt-10
-    rounded-2xl shadow-xl ">
-        @include('teachers.form', ['action' => route('teachers.store'), 'method' => 'POST', 'teachingHours' => $teachingHours])
-    </div>
+    <x-slot name="slot">
+        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 bg-white mt-10
+    rounded-2xl shadow-xl">
+            @include('teachers.form', [
+                'action' => route('teachers.store'),
+                'method' => 'POST',
+                'teachingHours' => $teachingHours,
+            ])
+        </div>
+    </x-slot>
 </x-app-layout>

@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
         <!-- Scripts -->
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         @vite('resources/css/app.css')
@@ -20,7 +21,7 @@
     <body class="font-sans antialiased" >
         <x-banner />
             @livewire('navigation-menu')
-        <div class="bg-gray-100">
+        <div class="bg-gray-100 pb-12">
 
 
             <!-- Page Heading -->

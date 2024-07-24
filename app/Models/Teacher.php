@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Teacher extends Model
 {
     use HasFactory;
@@ -62,5 +63,10 @@ class Teacher extends Model
     public function teachingHour()
     {
         return $this->belongsTo(TeachingHour::class, 'teaching_hours_id');
+    }
+
+    public function historic()
+    {
+        return $this->hasMany(Historic::class, 'IDENTIFICACION', 'ci');
     }
 }
