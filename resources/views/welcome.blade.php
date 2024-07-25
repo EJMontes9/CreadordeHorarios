@@ -10,18 +10,19 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <!-- Scripts -->
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet"/>
     @vite('resources/css/app.css')
     @vite(['resources/css/app.css','resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles
 </head>
-    <body>
-    <x-navbar/>
-        <x-welcomepage/>
-    @stack('modals')
 
-    @livewireScripts
-    </body>
+<body>
+<x-navbar/>
+<x-welcomepage/>
+@stack('modals')
+@livewireScripts
+<x-footer/>
+</body>
 </html>

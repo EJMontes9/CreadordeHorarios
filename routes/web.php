@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +19,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('teachers', TeacherController::class);
+
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('', function () {
-        return view('welcome');
-    })->name('dashboard');
+    Route::get('', function () {return view('welcome');})->name('dashboard');
+    Route::resource('teachers', TeacherController::class);
+    Route::get('documents/{group?}', [DocumentController::class, 'index'])->name('documents.index');
+    Route::delete('documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
+    Route::get('documentscreate', [DocumentController::class, 'create'])->name('documents.create');
+    Route::post('documents', [DocumentController::class, 'store'])->name('documents.store');
 });
+
+
+
+
