@@ -32,7 +32,7 @@
                                 <i class="fa-regular fa-eye"></i>
                             </a>
                             <a x-data="{ tooltip: 'Edite' }" href="{{ route('teachers.edit', $teacher) }}">
-                                <i class="fa-regular fa-pen-to-square"></i>
+                                <i class="fas fa-pen-to-square"></i>
                             </a>
                         </div>
                     </td>

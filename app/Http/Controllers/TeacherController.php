@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Teacher;
 use App\Models\TeachingHour;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class TeacherController extends Controller
 {
@@ -34,8 +36,19 @@ class TeacherController extends Controller
 
     public function show(Teacher $teacher)
     {
+        //tomar del objeto teacher el ci y comparar con la tabla historic el campo IDENTIFICACION, si son iguales mostrar todos los datos y guardarlos en la variable $teacher
+
+        $teachers = DB::table('teachers')
+            ->join('historic', 'teachers.ci', '=', 'historic.IDENTIFICACION')
+            ->select('teachers.*', 'historic.*')
+            ->where('teachers.ci', '=', $teacher->ci)
+            ->get();
+
+        //dd($teachers);
+
         $otherOptions = ['1' => '1', '2' => '2', '3' => '3', 'none' => 'Ninguno'];
-        return view('teachers.show', compact('teacher', 'otherOptions'));
+
+        return view('teachers.show', compact('teacher', 'otherOptions', 'teachers'));
     }
 
     public function edit(Teacher $teacher)
