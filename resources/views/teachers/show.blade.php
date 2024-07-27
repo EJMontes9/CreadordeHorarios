@@ -22,31 +22,31 @@
                             </h3>
                             <div x-show="open === 0" x-transition class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <p class="font-medium">Cédula de Identidad:</p>
+                                    <p class="font-semibold">Cédula de Identidad:</p>
                                     <p>{{ $teacher->ci ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Nombre:</p>
+                                    <p class="font-semibold">Nombre:</p>
                                     <p>{{ $teacher->first_name ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Apellido:</p>
+                                    <p class="font-semibold">Apellido:</p>
                                     <p>{{ $teacher->last_name ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Género:</p>
+                                    <p class="font-semibold">Género:</p>
                                     <p>{{ $teacher->gender ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Fecha de Nacimiento:</p>
+                                    <p class="font-semibold">Fecha de Nacimiento:</p>
                                     <p>{{ $teacher->date_of_birth ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Edad:</p>
+                                    <p class="font-semibold">Edad:</p>
                                     <p>{{ $teacher->age ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Nacionalidad:</p>
+                                    <p class="font-semibold">Nacionalidad:</p>
                                     <p>{{ $teacher->nacionality ?? '' }}</p>
                                 </div>
                             </div>
@@ -60,15 +60,15 @@
                             </h3>
                             <div x-show="open === 1" x-transition class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <p class="font-medium">Número de Celular:</p>
+                                    <p class="font-semibold">Número de Celular:</p>
                                     <p>{{ $teacher->num_cellphone ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Correo Personal:</p>
+                                    <p class="font-semibold">Correo Personal:</p>
                                     <p>{{ $teacher->email ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Correo Institucional:</p>
+                                    <p class="font-semibold">Correo Institucional:</p>
                                     <p>{{ $teacher->email_ug ?? '' }}</p>
                                 </div>
                             </div>
@@ -82,59 +82,59 @@
                             </h3>
                             <div x-show="open === 2" x-transition class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <p class="font-medium">Fecha de Ingreso:</p>
+                                    <p class="font-semibold">Fecha de Ingreso:</p>
                                     <p>{{ $teacher->date_of_admission ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Dedicación:</p>
+                                    <p class="font-semibold">Dedicación:</p>
                                     <p>{{ $teacher->dedication ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Descripción Puesto:</p>
+                                    <p class="font-semibold">Descripción Puesto:</p>
                                     <p>{{ $teacher->den_puesto ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Cargo:</p>
+                                    <p class="font-semibold">Cargo:</p>
                                     <p>{{ $teacher->rol ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Título de Cuarto Nivel:</p>
+                                    <p class="font-semibold">Título de Cuarto Nivel:</p>
                                     <p>{{ $teacher->third_level_title ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Título de Cuarto Nivel:</p>
+                                    <p class="font-semibold">Título de Cuarto Nivel:</p>
                                     <p>{{ $teacher->fourth_level_title ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Maestría:</p>
+                                    <p class="font-semibold">Maestría:</p>
                                     <p>{{ $otherOptions[$teacher->master_degree] ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Doctorado o PhD:</p>
+                                    <p class="font-semibold">Doctorado o PhD:</p>
                                     <p>{{ $otherOptions[$teacher->doctorate] ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Especialidad:</p>
+                                    <p class="font-semibold">Especialidad:</p>
                                     <p>{{ $otherOptions[$teacher->specialty] ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Diplomado:</p>
+                                    <p class="font-semibold">Diplomado:</p>
                                     <p>{{ $otherOptions[$teacher->researcher] ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas de Contrato:</p>
+                                    <p class="font-semibold">Horas de Contrato:</p>
                                     <p>{{ $teacher->contract_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Tipo de Contrato:</p>
+                                    <p class="font-semibold">Tipo de Contrato:</p>
                                     <p>{{ $teacher->contract_type ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Carrera:</p>
+                                    <p class="font-semibold">Carrera:</p>
                                     <p>{{ $teacher->career ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Afinidad:</p>
+                                    <p class="font-semibold">Afinidad:</p>
                                     <p>{{ $teacher->afinity ? 'Sí' : 'No' }}</p>
                                 </div>
                             </div>
@@ -148,83 +148,83 @@
                             </h3>
                             <div x-show="open === 3" x-transition class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <p class="font-medium">Periodo:</p>
+                                    <p class="font-semibold">Periodo:</p>
                                     <p>{{ $teacher->period ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Docente Horario:</p>
+                                    <p class="font-semibold">Horas Docente Horario:</p>
                                     <p>{{ $teacher->teacher_schedule_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Preparación Clases:</p>
+                                    <p class="font-semibold">Horas Preparación Clases:</p>
                                     <p>{{ $teacher->class_preparation_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Investigación:</p>
+                                    <p class="font-semibold">Horas Investigación:</p>
                                     <p>{{ $teacher->research_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Gestión:</p>
+                                    <p class="font-semibold">Horas Gestión:</p>
                                     <p>{{ $teacher->management_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Gestión Social Conocimiento:</p>
+                                    <p class="font-semibold">Horas Gestión Social Conocimiento:</p>
                                     <p>{{ $teacher->social_knowledge_management_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Tutorías Prácticas Pre Profesionales:</p>
+                                    <p class="font-semibold">Horas Tutorías Prácticas Pre Profesionales:</p>
                                     <p>{{ $teacher->pre_professional_practice_tutoring_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Tutorías Académicas:</p>
+                                    <p class="font-semibold">Horas Tutorías Académicas:</p>
                                     <p>{{ $teacher->academic_tutoring_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Tutorías Titulación:</p>
+                                    <p class="font-semibold">Horas Tutorías Titulación:</p>
                                     <p>{{ $teacher->thesis_tutoring_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Tutorías Individuales:</p>
+                                    <p class="font-semibold">Horas Tutorías Individuales:</p>
                                     <p>{{ $teacher->individual_tutoring_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Tutorías Grupales:</p>
+                                    <p class="font-semibold">Horas Tutorías Grupales:</p>
                                     <p>{{ $teacher->group_tutoring_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Tutorías Titulación Complejivo:</p>
+                                    <p class="font-semibold">Horas Tutorías Titulación Complejivo:</p>
                                     <p>{{ $teacher->complex_thesis_tutoring_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Tutorías Prácticas Comunitarias:</p>
+                                    <p class="font-semibold">Horas Tutorías Prácticas Comunitarias:</p>
                                     <p>{{ $teacher->community_practice_tutoring_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Distributivo:</p>
+                                    <p class="font-semibold">Horas Distributivo:</p>
                                     <p>{{ $teacher->distributive_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas UTAH:</p>
+                                    <p class="font-semibold">Horas UTAH:</p>
                                     <p>{{ $teacher->utah_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Horas Académico:</p>
+                                    <p class="font-semibold">Horas Académico:</p>
                                     <p>{{ $teacher->academic_hours ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Gestiones:</p>
+                                    <p class="font-semibold">Gestiones:</p>
                                     <p>{{ $teacher->managements ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Actividades:</p>
+                                    <p class="font-semibold">Actividades:</p>
                                     <p>{{ $teacher->activities ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Proyectos Investigación:</p>
+                                    <p class="font-semibold">Proyectos Investigación:</p>
                                     <p>{{ $teacher->research_projects ?? '' }}</p>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Asignaturas a Dictar Actual:</p>
+                                    <p class="font-semibold">Asignaturas a Dictar Actual:</p>
                                     <p>{{ $teacher->subjects_to_teach_current ?? '' }}</p>
                                 </div>
                             </div>
@@ -259,7 +259,6 @@
                                                 <span class="font-semibold">Cédula de Identidad:</span>
                                                 {{ $teacher->ci }}
                                             </h2>
-                                            <!-- Ubicación modificada del select y estilos de Tailwind agregados -->
                                             <div class="mt-4">
                                                 <select id="periodoSelect" onchange="filtrarPorPeriodo()"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:text-white">
@@ -282,10 +281,14 @@
                                         </div>
                                     </div>
                                     <!-- Modal body -->
-                                    <div class="p-4 md:p-5 space-y-4 overflow-x-auto"
-                                        >
+                                    <div class="p-4 md:p-5 space-y-4 overflow-x-auto">
                                         <div class="contenedor-tabla">
-                                            <table class="min-w-full divide-y divide-gray-200">
+                                            <!-- Mensaje cuando no hay datos disponibles -->
+                                            <div id="no-data-message" class="hidden text-center text-gray-500">
+                                                <p class="text-lg">No hay datos históricos disponibles para este Profesor . . .</p>
+                                            </div>
+                                            <table id="historical-table"
+                                                class="min-w-full divide-y divide-gray-200 hidden">
                                                 <thead class="bg-gray-50">
                                                     <tr>
                                                         <th
@@ -298,13 +301,13 @@
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
                                                             FACULTAD</th>
                                                         <th
-                                                            class="px-6 py-3 text-center text-sm  text-gray-500 uppercase tracking-wider font-bold">
+                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
                                                             CARRERA</th>
                                                         <th
-                                                            class="px-6 py-3 text-center text-sm  text-gray-500 uppercase tracking-wider font-bold">
+                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
                                                             NIVEL</th>
                                                         <th
-                                                            class="px-6 py-3 text-center text-sm  text-gray-500 uppercase tracking-wider font-bold">
+                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
                                                             MATERIA</th>
                                                         <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
@@ -354,7 +357,6 @@
                                                         <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
                                                             DOMINGO</th>
-                                                        <!-- Agrega más columnas según necesites -->
                                                     </tr>
                                                 </thead>
                                                 <tbody class="bg-white divide-y divide-gray-200">
@@ -437,12 +439,12 @@
                                         class="flex items-center justify-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                                         <button data-modal-hide="default-modal" type="button"
                                             class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                                            Cerrar</button>
+                                            Cerrar
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="flex justify-left items-center px-4 py-4 sm:px-6">
                             <a href="{{ route('teachers.index') }}"
@@ -491,4 +493,19 @@
             }
         });
     }
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var teachers = @json($teachers);
+        var table = document.getElementById('historical-table');
+        var noDataMessage = document.getElementById('no-data-message');
+
+        if (teachers.length === 0) {
+            table.classList.add('hidden');
+            noDataMessage.classList.remove('hidden');
+        } else {
+            table.classList.remove('hidden');
+            noDataMessage.classList.add('hidden');
+        }
+    });
 </script>
