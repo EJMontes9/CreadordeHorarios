@@ -16,15 +16,15 @@
                     <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
                         <li class="mb-4">
-                            <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
+                            <p>Flowbite</p>
                         </li>
                         <li>
-                            <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                            <p>Tailwind CSS</p>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Recursos</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
                         <li class="mb-4">
                             <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
@@ -35,13 +35,18 @@
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Contacto</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                        <li class="mb-4">
-                            <a href="#" class="hover:underline">Privacy Policy</a>
+                        <li class="flex flex-row items-start mb-4">
+                            <i class="fa-solid fa-location-dot mr-3 pt-1"></i>
+                            <p>Universidad de Guayaquil<br>Cdla. Universitaria<br>
+                                Av. Delta y Av. Kennedy
+
+                            </p>
                         </li>
-                        <li>
-                            <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                        <li class="flex flex-row">
+                            <i class="fa-solid fa-phone mr-3 pt-1"></i>
+                            <p>(04) 2391004</p>
                         </li>
                     </ul>
                 </div>

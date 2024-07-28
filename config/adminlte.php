@@ -316,21 +316,10 @@ return [
         ],
         [
             'text' => 'Archivos',
-            'route' => 'admin.roles.index',
+            'route' => 'documents.store',
             'icon' => 'fas fa-fw fa-file',
             'active' => ['admin/files*'],
         ],
-        ['header' => 'Ajustes de La cuenta'],
-        [
-            'text' => 'Mi Perfil',
-            'url' => 'user/profile',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'Cambiar Contraseña',
-            'url' => 'user/profile',
-            'icon' => 'fas fa-fw fa-lock',
-        ]
     ],
 
     /*

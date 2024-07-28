@@ -13,7 +13,14 @@
 @stop
 
 @section('css')
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <style>
+        .brand-link .brand-image {
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+    </style>
 @stop
 
 @section('js')

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,9 +12,10 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->string('link');
-            $table->string('group_name');
-            $table->string('document_name');
+            $table->string('link')->nullable(); // link can be null for folders
+            $table->string('name');
+            $table->unsignedBigInteger('parent_id')->nullable(); // parent_id for folder hierarchy
+            $table->foreign('parent_id')->references('id')->on('documents')->onDelete('cascade');
             $table->timestamps();
         });
     }

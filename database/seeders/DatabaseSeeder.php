@@ -12,9 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            UserSeeder::class,
-        ]);
+
 
         $this->call([
             PermissionSeeder::class,
@@ -26,6 +24,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             TeachingHoursSeeder::class,
+        ]);
+
+        $this->call([
+            UserSeeder::class,
         ]);
     }
 }

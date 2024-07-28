@@ -28,10 +28,16 @@ Route::middleware([
 ])->group(function () {
     Route::get('', function () {return view('welcome');})->name('dashboard');
     Route::resource('teachers', TeacherController::class);
-    Route::get('documents/{group?}', [DocumentController::class, 'index'])->name('documents.index');
+    // Ruta para manejar múltiples niveles de carpetas
+    Route::get('documents/{path?}', [DocumentController::class, 'index'])
+        ->where('path', '.*')
+        ->name('documents.index');
+
     Route::delete('documents/{document}', [DocumentController::class, 'destroy'])->name('documents.destroy');
     Route::get('documentscreate', [DocumentController::class, 'create'])->name('documents.create');
     Route::post('documents', [DocumentController::class, 'store'])->name('documents.store');
+    Route::post('documents/create-folder', [DocumentController::class, 'createFolder'])->name('documents.createFolder');
+    Route::post('documents/create-file', [DocumentController::class, 'createFile'])->name('documents.createFile');
 });
 
 
