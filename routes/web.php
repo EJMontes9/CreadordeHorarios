@@ -41,6 +41,7 @@ Route::middleware([
     Route::get('/docspecific/{rootId}/{subIds?}', [DocumentController::class, 'showSpecificFolder'])
         ->where('subIds', '.*')
         ->name('documents.specific');
+    Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
 });
 
 
