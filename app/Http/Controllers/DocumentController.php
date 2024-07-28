@@ -150,4 +150,24 @@ class DocumentController extends Controller
         return redirect()->back();
     }
 
+    public function showSpecificFolder($rootId, $subIds = null)
+    {
+        // Obtener la carpeta raíz por ID
+        $parent = Document::findOrFail($rootId);
+
+        // Si hay subcarpetas, navegar a través de ellas
+        if ($subIds) {
+            $subIdsArray = explode('/', $subIds);
+            foreach ($subIdsArray as $subId) {
+                $parent = Document::where('id', $subId)->where('parent_id', $parent->id)->firstOrFail();
+            }
+        }
+
+        // Obtener los documentos y subcarpetas dentro de la carpeta padre
+        $documents = $parent->children;
+
+        // Devolver la vista con los documentos y la carpeta padre
+        return view('documents.specific', compact('documents', 'parent', 'rootId', 'subIds'));
+    }
+
 }

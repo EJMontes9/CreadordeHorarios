@@ -38,6 +38,9 @@ Route::middleware([
     Route::post('documents', [DocumentController::class, 'store'])->name('documents.store');
     Route::post('documents/create-folder', [DocumentController::class, 'createFolder'])->name('documents.createFolder');
     Route::post('documents/create-file', [DocumentController::class, 'createFile'])->name('documents.createFile');
+    Route::get('/docspecific/{rootId}/{subIds?}', [DocumentController::class, 'showSpecificFolder'])
+        ->where('subIds', '.*')
+        ->name('documents.specific');
 });
 
 
