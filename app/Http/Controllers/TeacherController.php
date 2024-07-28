@@ -13,13 +13,24 @@ class TeacherController extends Controller
     public function index(Request $request)
     {
         $searchTerm = $request->input('search');
-        $teachers = Teacher::when($searchTerm, function ($query, $searchTerm) {
-            return $query->where('first_name', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('last_name', 'LIKE', "%{$searchTerm}%");
-        })->get();
+        $user = auth()->user();
+        $userPermissions = $user->getAllPermissions()->pluck('name'); // Obtiene los nombres de los permisos del usuario
 
-        return view('teachers.index', compact('teachers'));
+        // Filtrar los profesores basándose en los permisos del usuario
+        $teachers = Teacher::whereIn('career', $userPermissions)
+            ->when($searchTerm, function ($query, $searchTerm) {
+                return $query->where(function ($query) use ($searchTerm) {
+                    $query->where('first_name', 'LIKE', "%{$searchTerm}%")
+                        ->orWhere('last_name', 'LIKE', "%{$searchTerm}%");
+                });
+            })->get();
+
+        // Si no hay coincidencias y el usuario no tiene permisos, mostrar mensaje de no autorizado
+        $unauthorized = $teachers->isEmpty();
+
+        return view('teachers.index', compact('teachers', 'unauthorized'));
     }
+
 
     public function create()
     {

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'StudyApp')
+@section('title', 'Administrador FCA')
 
 @section('content_header')
     <h1>Lista de Usuarios</h1>

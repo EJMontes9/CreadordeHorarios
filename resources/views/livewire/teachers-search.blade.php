@@ -1,9 +1,8 @@
 <div>
     @php
-
         $headers = [
             ['key' => 'first_name', 'label' => 'Nombre'],
-            ['key' => 'last_name', 'label' => 'Apellido'] # <---- nested attributes
+            ['key' => 'last_name', 'label' => 'Apellido']
         ];
     @endphp
     <input type="text" wire:model.live="search" placeholder="Buscar por nombre o apellido..."
@@ -22,21 +21,24 @@
             </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-            @foreach ($teachers as $teacher)
-                <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4">{{ $teacher->first_name }}</td>
-                    <td class="px-6 py-4">{{ $teacher->last_name }}</td>
-                    <td class="px-6 py-4">
-                        <div class="flex justify-end gap-4">
-                            <a x-data="{ tooltip: 'View' }" href="{{ route('teachers.show', $teacher) }}">
-                                <i class="fa-regular fa-eye"></i>
-                            </a>
-                            <a x-data="{ tooltip: 'Edite' }" href="{{ route('teachers.edit', $teacher) }}">
-                                <i class="fas fa-pen-to-square"></i>
-                            </a>
-                        </div>
-                    </td>
-            @endforeach
+
+                @foreach ($teachers as $teacher)
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4">{{ $teacher->first_name }}</td>
+                        <td class="px-6 py-4">{{ $teacher->last_name }}</td>
+                        <td class="px-6 py-4">
+                            <div class="flex justify-end gap-4">
+                                <a x-data="{ tooltip: 'View' }" href="{{ route('teachers.show', $teacher) }}">
+                                    <i class="fa-regular fa-eye"></i>
+                                </a>
+                                <a x-data="{ tooltip: 'Edit' }" href="{{ route('teachers.edit', $teacher) }}">
+                                    <i class="fas fa-pen-to-square"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+
             </tbody>
         </table>
     </div>

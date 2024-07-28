@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'StudyApp')
+@section('title', 'Administrador FCA')
 
 @section('content_header')
     <div class="row ml-1">
