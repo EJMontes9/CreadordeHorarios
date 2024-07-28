@@ -14,23 +14,24 @@ class TeacherController extends Controller
     {
         $searchTerm = $request->input('search');
         $user = auth()->user();
-        $userPermissions = $user->getAllPermissions()->pluck('name'); // Obtiene los nombres de los permisos del usuario
+        $userPermissions = $user->getAllPermissions()->pluck('name');
 
         // Filtrar los profesores basándose en los permisos del usuario
-        $teachers = Teacher::whereIn('career', $userPermissions)
-            ->when($searchTerm, function ($query, $searchTerm) {
-                return $query->where(function ($query) use ($searchTerm) {
-                    $query->where('first_name', 'LIKE', "%{$searchTerm}%")
-                        ->orWhere('last_name', 'LIKE', "%{$searchTerm}%");
-                });
-            })->get();
+        $teachersQuery = Teacher::query()
+            ->whereIn('career', $userPermissions);
 
-        // Si no hay coincidencias y el usuario no tiene permisos, mostrar mensaje de no autorizado
-        $unauthorized = $teachers->isEmpty();
+        if ($searchTerm) {
+            $teachersQuery->where(function ($query) use ($searchTerm) {
+                $query->where('first_name', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('last_name', 'LIKE', "%{$searchTerm}%");
+            });
+        }
 
-        return view('teachers.index', compact('teachers', 'unauthorized'));
+        $teachers = $teachersQuery->get();
+        $noResults = $teachers->isEmpty() && !empty($searchTerm);
+
+        return view('teachers.index', compact('teachers', 'noResults', 'searchTerm'));
     }
-
 
     public function create()
     {
