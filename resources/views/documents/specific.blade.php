@@ -16,32 +16,40 @@
                     </a>
                 </div>
             @endif
-            <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                @foreach($documents as $document)
-                    <li class="mb-3">
-                        @if($document->link)
-                            <a href="{{ $document->link }}" target="_blank" class="block border p-3 rounded-xl text-decoration-none">
-                                <div class="flex justify-between items-center">
-                                    <div class="flex items-center">
-                                        {!! DocumentHelper::getFileIcon($document) !!}
-                                        <span class="ml-3">{{ $document->name }}</span>
+
+            @if($documents->isEmpty())
+                <div class="flex flex-col justify-center items-center">
+                    <img src="{{ asset('svg/nodocument.svg') }}" alt="No documents available" class="w-3/4 h-3/4">
+                    <p class="text-4xl">No se encontraron carpetas o documentos</p>
+                </div>
+            @else
+                <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    @foreach($documents as $document)
+                        <li class="mb-3">
+                            @if($document->link)
+                                <a href="{{ $document->link }}" target="_blank" class="block border p-3 rounded-xl text-decoration-none">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            {!! DocumentHelper::getFileIcon($document) !!}
+                                            <span class="ml-3">{{ $document->name }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        @else
-                            <a href="{{ route('documents.specific', ['rootId' => $rootId, 'subIds' => $subIds ? $subIds . '/' . $document->id : $document->id]) }}" class="block border p-3 rounded-xl text-decoration-none">
-                                <div class="flex justify-between items-center">
-                                    <div class="flex items-center">
-                                        <i class="fa-solid fa-folder mr-3"></i>
-                                        <span>{{ $document->name }}</span>
+                                </a>
+                            @else
+                                <a href="{{ route('documents.specific', ['rootId' => $rootId, 'subIds' => $subIds ? $subIds . '/' . $document->id : $document->id]) }}" class="block border p-3 rounded-xl text-decoration-none">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <i class="fa-solid fa-folder mr-3"></i>
+                                            <span>{{ $document->name }}</span>
+                                        </div>
+                                        <span class="badge bg-gray-200 text-gray-800">{{ DocumentHelper::getFolderItemCount($document) }}</span>
                                     </div>
-                                    <span class="badge bg-gray-200 text-gray-800">{{ DocumentHelper::getFolderItemCount($document) }}</span>
-                                </div>
-                            </a>
-                        @endif
-                    </li>
-                @endforeach
-            </ul>
+                                </a>
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </section>
 </x-app-layout>
