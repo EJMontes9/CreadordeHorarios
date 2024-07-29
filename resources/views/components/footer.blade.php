@@ -13,13 +13,10 @@
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Informes</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
                         <li class="mb-4">
-                            <p>Flowbite</p>
-                        </li>
-                        <li>
-                            <p>Tailwind CSS</p>
+                            <a href="{{ route('teachers.index') }}">Profesores</a>
                         </li>
                     </ul>
                 </div>
@@ -27,10 +24,10 @@
                     <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Recursos</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
                         <li class="mb-4">
-                            <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                            <a href="/docspecific/1" class="hover:underline ">Estructura organizacional</a>
                         </li>
                         <li>
-                            <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                            <a href="/docspecific/10" class="hover:underline">Legal y formatos</a>
                         </li>
                     </ul>
                 </div>
