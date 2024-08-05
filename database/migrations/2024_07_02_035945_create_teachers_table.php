@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('ci')->unique();
+            $table->string('ci');
             $table->string('first_name');
             $table->string('last_name');
             $table->date('date_of_birth');
@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('gender');
             $table->string('nacionality');
             $table->string('num_cellphone');
-            $table->string('email')->unique();
-            $table->string('email_ug')->unique();
+            $table->string('email');
+            $table->string('email_ug');
             $table->string('dedication');
             $table->string('contract_type');
             $table->string('den_puesto');

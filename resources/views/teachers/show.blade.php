@@ -249,7 +249,7 @@
                                         class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                         <div class="flex-grow text-center">
                                             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                                GESTIÓN DE HACE 5 AÑOS
+                                                GESTIÓN DE HORARIOS
                                             </h3>
                                             <h2 class="text-base font-medium text-gray-500 dark:text-gray-400 mt-5">
                                                 <span class="font-semibold">Docente:</span> {{ $teacher->first_name }}
@@ -292,13 +292,13 @@
                                                 <thead class="bg-gray-50">
                                                     <tr>
                                                         <th
-                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
+                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold hidden">
                                                             COD PLECTIVO</th>
                                                         <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
                                                             PERIODO</th>
                                                         <th
-                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
+                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold hidden">
                                                             FACULTAD</th>
                                                         <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
@@ -325,10 +325,10 @@
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
                                                             CON MOVILIDAD</th>
                                                         <th
-                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
+                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold hidden">
                                                             IDENTIFICACION</th>
                                                         <th
-                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
+                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold hidden">
                                                             DOCENTE</th>
                                                         <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
@@ -363,13 +363,13 @@
                                                     @foreach ($teachers as $teacher)
                                                         <tr data-periodo="{{ $teacher->PERIODO }}">
                                                             <td
-                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden">
                                                                 {{ $teacher->COD_PLECTIVO }}</td>
                                                             <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                                                                 {{ $teacher->PERIODO }}</td>
                                                             <td
-                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden">
                                                                 {{ $teacher->FACULTAD }}</td>
                                                             <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
@@ -396,10 +396,10 @@
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                                                                 {{ $teacher->CON_MOVILIDAD }}</td>
                                                             <td
-                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden">
                                                                 {{ $teacher->IDENTIFICACION }}</td>
                                                             <td
-                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden">
                                                                 {{ $teacher->DOCENTE }}</td>
                                                             <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
