@@ -54,9 +54,6 @@ return new class extends Migration
             $table->integer('utah_hours');
             $table->integer('academic_hours');
             $table->text('managements');
-            $table->text('activities');
-            $table->text('research_projects');
-            $table->text('subjects_to_teach_current');
             $table->timestamps();
         });
     }

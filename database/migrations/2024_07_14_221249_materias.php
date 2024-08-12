@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('degrees');
+            $table->string('degrees');
+            $table->unsignedBigInteger('teacher_id'); // Agregar columna para clave foránea
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade'); // Definir clave foránea
             $table->timestamps();
         });
     }
