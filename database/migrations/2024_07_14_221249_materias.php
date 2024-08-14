@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('degrees');
-            $table->string('degrees');
-            $table->string('teacher_id');
-            $table->foreign('teacher_id')->references('ci')->on('teachers')->onDelete('cascade');
+            $table->string('teacher_ci');
+            $table->foreign('teacher_ci')->references('ci')->on('teachers')->onDelete('cascade');
             $table->timestamps();
         });
     }

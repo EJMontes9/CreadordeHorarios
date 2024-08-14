@@ -52,9 +52,6 @@ class Teacher extends Model
         'utah_hours',
         'academic_hours',
         'managements',
-        'activities',
-        'research_projects',
-        'subjects_to_teach_current'
     ];
 
     /**
@@ -69,4 +66,11 @@ class Teacher extends Model
     {
         return $this->hasMany(Historic::class, 'IDENTIFICACION', 'ci');
     }
+
+    // Relación con el modelo Subject
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class, 'teacher_ci', 'ci');
+    }
+
 }

@@ -16,9 +16,14 @@ class TeacherController extends Controller
         $user = auth()->user();
         $userPermissions = $user->getAllPermissions()->pluck('name');
 
-        // Filtrar los profesores basándose en los permisos del usuario
-        $teachersQuery = Teacher::query()
-            ->whereIn('career', $userPermissions);
+        // Verificar si el usuario tiene el rol de Admin
+        if ($user->hasRole('Admin')) {
+            $teachersQuery = Teacher::query();
+        } else {
+            // Filtrar los profesores basándose en los permisos del usuario
+            $teachersQuery = Teacher::query()
+                ->whereIn('career', $userPermissions);
+        }
 
         if ($searchTerm) {
             $teachersQuery->where(function ($query) use ($searchTerm) {
