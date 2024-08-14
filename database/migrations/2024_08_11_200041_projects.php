@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subjects', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('degrees');
-            $table->string('degrees');
-            $table->string('teacher_id');
-            $table->foreign('teacher_id')->references('ci')->on('teachers')->onDelete('cascade');
+            $table->year('year');
+            $table->boolean('you_have_a_project');
+            $table->string('teacher_id'); // Cambiar a string para coincidir con el campo ci
+            $table->foreign('teacher_id')->references('ci')->on('teachers')->onDelete('cascade'); // Definir clave foránea con ci
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subjects');
+        Schema::dropIfExists('projects');
     }
 };
