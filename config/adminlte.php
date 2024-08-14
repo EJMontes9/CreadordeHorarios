@@ -319,7 +319,7 @@ return [
             'route' => 'documents.store',
             'icon' => 'fas fa-fw fa-file',
             'active' => ['admin/files*'],
-        ]
+        ],
     ],
 
     /*

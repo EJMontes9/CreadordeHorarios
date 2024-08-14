@@ -48,6 +48,15 @@
                                         {!! DocumentHelper::getFileIcon($document) !!}
                                         <span class="ml-3">{{ $document->name }}</span>
                                     </div>
+                                    <span class="badge text-bg-secondary">
+                                        <form action="{{ route('documents.destroy', $document->id) }}" method="POST"
+                                              class="delete-form mt-2">
+                                @csrf
+                                            @method('DELETE')
+                                <button type="submit" class="bg-red-500 px-2 py-1 rounded"><i class="fa-solid fa-trash"
+                                                                                              style="color: #ffffff;"></i></button>
+                            </form>
+                                    </span>
                                 </div>
                             </a>
                         @else

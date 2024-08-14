@@ -35,9 +35,9 @@ class TeacherController extends Controller
 
     public function create()
     {
-        $teachingHours = TeachingHour::all();
+        //$teachingHours = TeachingHour::all();
         $otherOptions = ['1' => '1', '2' => '2', '3' => '3', 'none' => 'Ninguno'];
-        return view('teachers.create', compact('teachingHours', 'otherOptions'));
+        return view('teachers.create', compact('otherOptions'));
     }
 
     public function store(Request $request)
@@ -65,9 +65,9 @@ class TeacherController extends Controller
 
     public function edit(Teacher $teacher)
     {
-        $teachingHours = TeachingHour::all(); // Paso 1
+        //$teachingHours = TeachingHour::all(); // Paso 1
         $otherOptions = ['1' => '1', '2' => '2', '3' => '3', 'none' => 'Ninguno'];
-        return view('teachers.edit', compact('teacher', 'teachingHours', 'otherOptions')); // Paso 2
+        return view('teachers.edit', compact('teacher', 'otherOptions')); // Paso 2
     }
 
     public function update(Request $request, Teacher $teacher)

@@ -23,10 +23,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-            TeachingHoursSeeder::class,
-        ]);
-
-        $this->call([
             UserSeeder::class,
         ]);
 

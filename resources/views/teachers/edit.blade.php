@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-5">
-                @include('teachers.form', ['action' => route('teachers.update', $teacher), 'method' => 'PUT', 'teachingHours' => $teachingHours])
+                @include('teachers.form', ['action' => route('teachers.update', $teacher), 'method' => 'PUT'])
             </div>
         </div>
     </div>

@@ -52,6 +52,9 @@ class Teacher extends Model
         'utah_hours',
         'academic_hours',
         'managements',
+        'activities',
+        'research_projects',
+        'subjects_to_teach_current'
     ];
 
     /**

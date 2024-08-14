@@ -28,7 +28,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('', function () {return view('welcome');})->name('dashboard');
     Route::resource('teachers', TeacherController::class);
-    // Ruta para manejar múltiples niveles de carpetas
+    //Ruta para manejar múltiples niveles de carpetas
     Route::get('documents/{path?}', [DocumentController::class, 'index'])
         ->where('path', '.*')
         ->name('documents.index');

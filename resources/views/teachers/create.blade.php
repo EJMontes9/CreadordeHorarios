@@ -10,7 +10,7 @@
             @include('teachers.form', [
                 'action' => route('teachers.store'),
                 'method' => 'POST',
-                'teachingHours' => $teachingHours,
+                
             ])
         </div>
     </x-slot>

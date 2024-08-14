@@ -26,8 +26,8 @@ return new class extends Migration
             $table->string('dedication');
             $table->string('contract_type');
             $table->string('den_puesto');
-            $table->string('third_level_title');
-            $table->string('fourth_level_title');
+            $table->text('third_level_title');
+            $table->text('fourth_level_title');
             $table->date('date_of_admission');
             $table->string('career');
             $table->string('rol');
@@ -54,6 +54,9 @@ return new class extends Migration
             $table->integer('utah_hours');
             $table->integer('academic_hours');
             $table->text('managements');
+            $table->text('activities');
+            $table->text('research_projects');
+            $table->text('subjects_to_teach_current');
             $table->timestamps();
         });
     }
