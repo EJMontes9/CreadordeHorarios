@@ -215,18 +215,6 @@
                                     <p class="font-semibold">Gestiones:</p>
                                     <p>{{ $teacher->managements ?? '' }}</p>
                                 </div>
-                                <div>
-                                    <p class="font-semibold">Actividades:</p>
-                                    <p>{{ $teacher->activities ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Proyectos Investigación:</p>
-                                    <p>{{ $teacher->research_projects ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Asignaturas a Dictar Actual:</p>
-                                    <p>{{ $teacher->subjects_to_teach_current ?? '' }}</p>
-                                </div>
                             </div>
                         </div>
 
