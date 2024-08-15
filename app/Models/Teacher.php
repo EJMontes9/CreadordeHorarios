@@ -73,4 +73,9 @@ class Teacher extends Model
         return $this->hasMany(Subject::class, 'teacher_ci', 'ci');
     }
 
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'teacher_id', 'ci');
+    }
+
 }

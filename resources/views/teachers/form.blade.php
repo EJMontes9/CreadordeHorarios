@@ -16,6 +16,10 @@
                 class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <span class="text-center mx-5">Información de Materias</span>
         </li>
+        <li
+                class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+            <span class="text-center mx-5">Información de Proyectos</span>
+        </li>
         <li class="step flex items-center w-1/4 justify-center">
             <span class="text-center mx-5">Información Planificación</span>
         </li>
@@ -252,7 +256,7 @@
             <x-button id="prev-to-contact" type="button">
                 {{ __('Regresar') }}
             </x-button>
-            <x-button id="next-to-planification" type="button">
+            <x-button id="next-to-subjects" type="button">
                 {{ __('Siguiente') }}
             </x-button>
         </div>
@@ -267,27 +271,34 @@
         </div>
 
         <div id="subjects-container">
-            <div class="flex flex-col sm:flex-row mb-3 subject-item">
-                <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
-                    <x-label for="subject_name" :value="__('Nombre de la Materia:')"/>
-                    <x-input id="subject_name" class="block mt-1 w-full" type="text" name="subjects[0][name]" required/>
+            @foreach($teacher->subjects as $subject)
+                <div class="flex flex-col sm:flex-row mb-3 subject-item">
+                    <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                        <x-label for="subject_name" :value="__('Nombre de la Materia:')"/>
+                        <x-input id="subject_name" class="block mt-1 w-full" type="text" name="subjects[][name]"
+                                 value="{{ $subject->name }}" required/>
+                    </div>
+                    <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                        <x-label for="subject_cycle" :value="__('Ciclo:')"/>
+                        <x-input id="subject_cycle" class="block mt-1 w-full" type="text" name="subjects[][cycle]"
+                                 value="{{ $subject->cycle }}" required/>
+                    </div>
+                    <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                        <x-label for="subject_afinity" :value="__('Afinidad:')"/>
+                        <select id="subject_afinity" class="block mt-1 w-full rounded-md" name="subjects[][afinity]"
+                                required>
+                            <option value="">{{ __('Seleccione una opción') }}</option>
+                            <option value="1" {{ $subject->afinity == 1 ? 'selected' : '' }}>{{ __('Sí') }}</option>
+                            <option value="0" {{ $subject->afinity == 0 ? 'selected' : '' }}>{{ __('No') }}</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center">
+                        <x-button type="button" class="remove-subject">
+                            {{ __('Eliminar') }}
+                        </x-button>
+                    </div>
                 </div>
-                <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
-                    <x-label for="subject_afinity" :value="__('Afinidad:')"/>
-                    <select id="subject_afinity" class="block mt-1 w-full rounded-md" name="subjects[0][afinity]"
-                            required>
-                        <option value="">{{ __('Seleccione una opción') }}</option>
-                        <option value="1">{{ __('Sí') }}</option>
-                        <option value="0">{{ __('No') }}</option>
-                    </select>
-                </div>
-                <div class="flex items-center">
-                    <x-button type="button"
-                              class="remove-subject bg-red-500 hover:bg-red-600 text-white font-bold px-2 rounded">
-                        {{ __('Eliminar') }}
-                    </x-button>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="flex justify-between">
@@ -296,6 +307,53 @@
             </x-button>
             <x-button id="add-subject" type="button">
                 {{ __('Agregar Materia') }}
+            </x-button>
+            <x-button id="next-to-project" type="button">
+                {{ __('Siguiente') }}
+            </x-button>
+        </div>
+    </div>
+
+    <!-- Información de Proyecto -->
+    <div id="section-project" class="hidden border border-blue-200 shadow p-4 rounded-2xl my-5">
+        <div class="flex flex-row mb-3 mt-2">
+            <div class="w-full">
+                <h3 class="text-center font-semibold text-lg">INFORMACIÓN DE PROYECTO</h3>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row mb-3">
+            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
+                <x-label for="project_name" :value="__('Nombre del Proyecto:')"/>
+                <x-input id="project_name" class="block mt-1 w-full" type="text" name="project[name]" required/>
+            </div>
+            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
+                <x-label for="project_year" :value="__('Año del Proyecto:')"/>
+                <x-input id="project_year" class="block mt-1 w-full" type="number" name="project[year]" required/>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row mb-3">
+            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
+                <x-label for="research_project" :value="__('¿Proyecto de investigación?')"/>
+                <select id="research_project" class="block mt-1 w-full rounded-md" name="project[research_project]"
+                        required>
+                    <option value="">{{ __('Seleccione una opción') }}</option>
+                    <option value="1">{{ __('Sí') }}</option>
+                    <option value="0">{{ __('No') }}</option>
+                </select>
+            </div>
+            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
+                <x-label for="position" :value="__('Cargo:')"/>
+                <select id="position" class="block mt-1 w-full rounded-md" name="project[position]" required>
+                    <option value="">{{ __('Seleccione una opción') }}</option>
+                    <option value="Docente investigador">{{ __('Docente investigador') }}</option>
+                    <option value="Director">{{ __('Director') }}</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="flex justify-between">
+            <x-button id="prev-to-subjects" type="button">
+                {{ __('Regresar') }}
             </x-button>
             <x-button id="next-to-planification" type="button">
                 {{ __('Siguiente') }}
@@ -416,7 +474,7 @@
             </div>
         </div>
         <div class="flex justify-between">
-            <x-button id="prev-to-academic" type="button">
+            <x-button id="prev-to-project" type="button">
                 {{ __('Regresar') }}
             </x-button>
             <x-button id="submit-form" type="submit">
@@ -495,6 +553,10 @@
                 <x-label for="subject_name_${subjectIndex}" :value="__('Nombre de la Materia:')"/>
                 <x-input id="subject_name_${subjectIndex}" class="block mt-1 w-full" type="text" name="subjects[${subjectIndex}][name]" required/>
             </div>
+            <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                    <x-label for="subject_cycle_${subjectIndex}" :value="__('Ciclo:')"/>
+                    <x-input id="subject_cycle_${subjectIndex}" class="block mt-1 w-full" type="text" name="subjects[${subjectIndex}][cycle]" required/>
+                </div>
             <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
                 <x-label for="subject_afinity_${subjectIndex}" :value="__('Afinidad:')"/>
                 <select id="subject_afinity_${subjectIndex}" class="block mt-1 w-full rounded-md" name="subjects[${subjectIndex}][afinity]" required>
@@ -543,64 +605,46 @@
         }
     }
 
+    function validateEmail(input) {
+        const email = input.value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const errorId = input.id + '-error';
+        if (!emailRegex.test(email)) {
+            document.getElementById(errorId).classList.remove('hidden');
+        } else {
+            document.getElementById(errorId).classList.add('hidden');
+        }
+    }
+
+
     document.addEventListener('DOMContentLoaded', function () {
-        const subjectsContainer = document.getElementById('subjects-container');
-        const addSubjectButton = document.getElementById('add-subject');
+        const sections = {
+            personal: document.getElementById('section-personal'),
+            contact: document.getElementById('section-contact'),
+            academic: document.getElementById('section-academic'),
+            subjects: document.getElementById('section-subjects'),
+            project: document.getElementById('section-project'),
+            planification: document.getElementById('section-planification')
+        };
+
+        const buttons = {
+            nextToContact: document.getElementById('next-to-contact'),
+            prevToPersonal: document.getElementById('prev-to-personal'),
+            nextToAcademic: document.getElementById('next-to-academic'),
+            prevToContact: document.getElementById('prev-to-contact'),
+            nextToSubjects: document.getElementById('next-to-subjects'),
+            prevToAcademic: document.getElementById('prev-to-academic'),
+            nextToProject: document.getElementById('next-to-project'),
+            prevToSubjects: document.getElementById('prev-to-subjects'),
+            nextToPlanification: document.getElementById('next-to-planification'),
+            prevToProject: document.getElementById('prev-to-project'),
+            submitForm: document.getElementById('submit-form'),
+        };
+
         let subjectIndex = 1;
 
-        addSubjectButton.addEventListener('click', function () {
-            const newSubject = document.createElement('div');
-            newSubject.classList.add('flex', 'flex-col', 'sm:flex-row', 'mb-3', 'subject-item');
-            newSubject.innerHTML = `
-            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
-                <x-label for="subject_name_${subjectIndex}" :value="__('Nombre de la Materia:')"/>
-                <x-input id="subject_name_${subjectIndex}" class="block mt-1 w-full" type="text" name="subjects[${subjectIndex}][name]" required/>
-            </div>
-            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
-                <x-label for="subject_afinity_${subjectIndex}" :value="__('Afinidad:')"/>
-                <select id="subject_afinity_${subjectIndex}" class="block mt-1 w-full rounded-md" name="subjects[${subjectIndex}][afinity]" required>
-                    <option value="">{{ __('Seleccione una opción') }}</option>
-                    <option value="1">{{ __('Sí') }}</option>
-                    <option value="0">{{ __('No') }}</option>
-                </select>
-            </div>
-            <div class="flex items-center">
-                <x-button type="button" class="remove-subject bg-red-500 hover:bg-red-600 text-white font-bold px-2 rounded">
-                    {{ __('Eliminar') }}
-            </x-button>
-        </div>
-`;
-            subjectsContainer.appendChild(newSubject);
-            subjectIndex++;
-        });
-
-        subjectsContainer.addEventListener('click', function (event) {
-            if (event.target.classList.contains('remove-subject')) {
-                event.target.closest('.subject-item').remove();
-            }
-        });
-
-        const personalSection = document.getElementById('section-personal');
-        const contactSection = document.getElementById('section-contact');
-        const academicSection = document.getElementById('section-academic');
-        const subjectsSection = document.getElementById('section-subjects');
-        const planificationSection = document.getElementById('section-planification');
-        const nextToContactButton = document.getElementById('next-to-contact');
-        const prevToPersonalButton = document.getElementById('prev-to-personal');
-        const nextToAcademicButton = document.getElementById('next-to-academic');
-        const prevToContactButton = document.getElementById('prev-to-contact');
-        const nextToSubjectsButton = document.getElementById('next-to-subjects');
-        const prevToAcademicButton = document.getElementById('prev-to-academic');
-        const nextToPlanificationButton = document.getElementById('next-to-planification');
-        const prevToSubjectsButton = document.getElementById('prev-to-subjects');
-        const submitFormButton = document.getElementById('submit-form');
-
         function showSection(sectionToShow) {
-            personalSection.classList.add('hidden');
-            contactSection.classList.add('hidden');
-            academicSection.classList.add('hidden');
-            subjectsSection.classList.add('hidden');
-            planificationSection.classList.add('hidden');
+            Object.values(sections).forEach(section => section.classList.add('hidden'));
             sectionToShow.classList.remove('hidden');
         }
 
@@ -620,61 +664,62 @@
             return valid;
         }
 
-        nextToContactButton.addEventListener('click', function () {
-            if (validateSection(personalSection)) {
-                showSection(contactSection);
+        buttons.nextToContact.addEventListener('click', function () {
+            if (validateSection(sections.personal)) {
+                showSection(sections.contact);
             }
         });
 
-        prevToPersonalButton.addEventListener('click', function () {
-            showSection(personalSection);
+        buttons.prevToPersonal.addEventListener('click', function () {
+            showSection(sections.personal);
         });
 
-        nextToAcademicButton.addEventListener('click', function () {
-            if (validateSection(contactSection)) {
-                showSection(academicSection);
+        buttons.nextToAcademic.addEventListener('click', function () {
+            if (validateSection(sections.contact)) {
+                showSection(sections.academic);
             }
         });
 
-        prevToContactButton.addEventListener('click', function () {
-            showSection(contactSection);
+        buttons.prevToContact.addEventListener('click', function () {
+            showSection(sections.contact);
         });
 
-        nextToSubjectsButton.addEventListener('click', function () {
-            if (validateSection(academicSection)) {
-                showSection(subjectsSection);
+        buttons.nextToSubjects.addEventListener('click', function () {
+            if (validateSection(sections.academic)) {
+                showSection(sections.subjects);
             }
         });
 
-        prevToAcademicButton.addEventListener('click', function () {
-            showSection(academicSection);
+        buttons.prevToAcademic.addEventListener('click', function () {
+            showSection(sections.academic);
         });
 
-        nextToPlanificationButton.addEventListener('click', function () {
-            if (validateSection(subjectsSection)) {
-                showSection(planificationSection);
+        buttons.nextToProject.addEventListener('click', function () {
+            if (validateSection(sections.subjects)) {
+                showSection(sections.project);
             }
         });
 
-        prevToSubjectsButton.addEventListener('click', function () {
-            showSection(subjectsSection);
+        buttons.prevToSubjects.addEventListener('click', function () {
+            showSection(sections.subjects);
         });
 
-        submitFormButton.addEventListener('click', function () {
-            if (validateSection(planificationSection)) {
+        buttons.nextToPlanification.addEventListener('click', function () {
+            if (validateSection(sections.project)) {
+                showSection(sections.planification);
+            }
+        });
+
+        buttons.prevToProject.addEventListener('click', function () {
+            showSection(sections.project);
+        });
+
+        buttons.submitForm.addEventListener('click', function () {
+            if (validateSection(sections.planification)) {
                 document.getElementById('form-all').submit();
             }
         });
+
     });
 
-    function validateEmail(input) {
-        const email = input.value;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const errorId = input.id + '-error';
-        if (!emailRegex.test(email)) {
-            document.getElementById(errorId).classList.remove('hidden');
-        } else {
-            document.getElementById(errorId).classList.add('hidden');
-        }
-    }
 </script>

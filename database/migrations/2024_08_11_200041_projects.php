@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->year('year');
-            $table->boolean('you_have_a_project');
+            $table->boolean('research_project');
+            $table->string('position');
             $table->string('teacher_id'); // Cambiar a string para coincidir con el campo ci
             $table->foreign('teacher_id')->references('ci')->on('teachers')->onDelete('cascade'); // Definir clave foránea con ci
             $table->timestamps();

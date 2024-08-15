@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
+use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TeachingHour;
 use Illuminate\Http\Request;
@@ -47,8 +49,71 @@ class TeacherController extends Controller
 
     public function store(Request $request)
     {
-        Teacher::create($request->all());
-        return redirect()->route('teachers.index');
+        // Crear el registro del Teacher
+        $teacher = Teacher::create([
+            'ci' => $request->input('ci'),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'date_of_birth' => $request->input('date_of_birth'),
+            'age' => $request->input('age'),
+            'gender' => $request->input('gender'),
+            'nacionality' => $request->input('nacionality'),
+            'num_cellphone' => $request->input('num_cellphone'),
+            'email' => $request->input('email'),
+            'email_ug' => $request->input('email_ug'),
+            'dedication' => $request->input('dedication'),
+            'contract_type' => $request->input('contract_type'),
+            'den_puesto' => $request->input('den_puesto'),
+            'third_level_title' => $request->input('third_level_title'),
+            'fourth_level_title' => $request->input('fourth_level_title'),
+            'date_of_admission' => $request->input('date_of_admission'),
+            'career' => $request->input('career'),
+            'rol' => $request->input('rol'),
+            'master_degree' => $request->input('master_degree'),
+            'doctorate' => $request->input('doctorate'),
+            'specialty' => $request->input('specialty'),
+            'researcher' => $request->input('researcher'),
+            'contract_hours' => $request->input('contract_hours'),
+            'afinity' => $request->input('afinity'),
+            'period' => $request->input('period'),
+            'teacher_schedule_hours' => $request->input('teacher_schedule_hours'),
+            'class_preparation_hours' => $request->input('class_preparation_hours'),
+            'research_hours' => $request->input('research_hours'),
+            'management_hours' => $request->input('management_hours'),
+            'social_knowledge_management_hours' => $request->input('social_knowledge_management_hours'),
+            'pre_professional_practice_tutoring_hours' => $request->input('pre_professional_practice_tutoring_hours'),
+            'academic_tutoring_hours' => $request->input('academic_tutoring_hours'),
+            'thesis_tutoring_hours' => $request->input('thesis_tutoring_hours'),
+            'individual_tutoring_hours' => $request->input('individual_tutoring_hours'),
+            'group_tutoring_hours' => $request->input('group_tutoring_hours'),
+            'complex_thesis_tutoring_hours' => $request->input('complex_thesis_tutoring_hours'),
+            'community_practice_tutoring_hours' => $request->input('community_practice_tutoring_hours'),
+            'distributive_hours' => $request->input('distributive_hours'),
+            'utah_hours' => $request->input('utah_hours'),
+            'academic_hours' => $request->input('academic_hours'),
+            'managements' => $request->input('managements'),
+        ]);
+
+        // Crear el proyecto
+        $project = Project::create([
+            'name' => $request->input('project.name'),
+            'year' => $request->input('project.year'),
+            'research_project' => $request->input('project.research_project'),
+            'position' => $request->input('project.position'),
+            'teacher_id' => $teacher->ci,
+        ]);
+
+        // Crear las materias
+        foreach ($request->input('subjects') as $subjectData) {
+            Subject::create([
+                'name' => $subjectData['name'],
+                'cycle' => $subjectData['cycle'],
+                'teacher_ci' => $teacher->ci,
+            ]);
+        }
+
+        // Redirigir o devolver una respuesta
+        return redirect()->route('teachers.index')->with('success', 'Datos guardados correctamente.');
     }
 
     public function show(Teacher $teacher)
@@ -61,7 +126,8 @@ class TeacherController extends Controller
             ->where('teachers.ci', '=', $teacher->ci)
             ->get();
 
-        //dd($teachers);
+        // Cargar las materias y proyectos relacionados
+        $teacher->load(['subjects', 'projects']);
 
         $otherOptions = ['1' => '1', '2' => '2', '3' => '3', 'none' => 'Ninguno'];
 
@@ -71,6 +137,7 @@ class TeacherController extends Controller
     public function edit(Teacher $teacher)
     {
         //$teachingHours = TeachingHour::all(); // Paso 1
+        $teacher->load('subjects'); // Load related subjects
         $otherOptions = ['1' => '1', '2' => '2', '3' => '3', 'none' => 'Ninguno'];
         return view('teachers.edit', compact('teacher', 'otherOptions')); // Paso 2
     }
