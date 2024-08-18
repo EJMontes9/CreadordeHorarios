@@ -593,8 +593,8 @@
                     <x-input id="subject_cycle_${subjectIndex}" class="block mt-1 w-full" type="text" name="subjects[${subjectIndex}][cycle]" required/>
                 </div>
             <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
-                <x-label for="subject_afinity_${subjectIndex}" :value="__('Afinidad:')"/>
-                <select id="subject_afinity_${subjectIndex}" class="block mt-1 w-full rounded-md" name="subjects[${subjectIndex}][afinity]" required>
+                <x-label for="subject_affinity_${subjectIndex}" :value="__('Afinidad:')"/>
+                <select id="subject_affinity_${subjectIndex}" class="block mt-1 w-full rounded-md" name="subjects[${subjectIndex}][affinity]" required>
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     <option value="1">{{ __('Sí') }}</option>
                     <option value="0">{{ __('No') }}</option>
