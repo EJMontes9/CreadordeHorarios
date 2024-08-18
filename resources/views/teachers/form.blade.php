@@ -1,23 +1,23 @@
 <div class="flex justify-center">
     <ol id="progress-bar" class="flex item-center w-full mb-4 sm:mb-5 ml-7 mr-3">
         <li
-                class="step flex w-1/4 items-center justify-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
+            class="step flex w-1/4 items-center justify-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
             <span class="text-center mx-5">Información Personal</span>
         </li>
         <li
-                class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <span class="text-center mx-5">Contactos</span>
         </li>
         <li
-                class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <span class="text-center mx-5">Información Académica</span>
         </li>
         <li
-                class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <span class="text-center mx-5">Información de Materias</span>
         </li>
         <li
-                class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <span class="text-center mx-5">Información de Proyectos</span>
         </li>
         <li class="step flex items-center w-1/4 justify-center">
@@ -184,7 +184,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                                {{ isset($teacher->master_degree) && $teacher->master_degree == $value ? 'selected' : '' }}>
+                            {{ isset($teacher->master_degree) && $teacher->master_degree == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -195,7 +195,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                                {{ isset($teacher->doctorate) && $teacher->doctorate == $value ? 'selected' : '' }}>
+                            {{ isset($teacher->doctorate) && $teacher->doctorate == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -206,7 +206,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                                {{ isset($teacher->specialty) && $teacher->specialty == $value ? 'selected' : '' }}>
+                            {{ isset($teacher->specialty) && $teacher->specialty == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -217,7 +217,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                                {{ isset($teacher->researcher) && $teacher->researcher == $value ? 'selected' : '' }}>
+                            {{ isset($teacher->researcher) && $teacher->researcher == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -263,56 +263,86 @@
     </div>
 
     <!-- Información de Materias -->
-    <div id="section-subjects" class="hidden border border-blue-200 shadow p-4 rounded-2xl my-5">
-        <div class="flex flex-row mb-3 mt-2">
-            <div class="w-full">
-                <h3 class="text-center font-semibold text-lg">INFORMACIÓN DE MATERIAS</h3>
-            </div>
+<div id="section-subjects" class="hidden border border-blue-200 shadow p-4 rounded-2xl my-5">
+    <div class="flex flex-row mb-3 mt-2">
+        <div class="w-full">
+            <h3 class="text-center font-semibold text-lg">INFORMACIÓN DE MATERIAS</h3>
         </div>
+    </div>
 
-        <div id="subjects-container">
+    <div id="subjects-container">
+        @if(isset($teacher) && $teacher->subjects)
             @foreach($teacher->subjects as $subject)
                 <div class="flex flex-col sm:flex-row mb-3 subject-item">
                     <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
                         <x-label for="subject_name" :value="__('Nombre de la Materia:')"/>
-                        <x-input id="subject_name" class="block mt-1 w-full" type="text" name="subjects[][name]"
+                        <x-input id="subject_name" class="block mt-1 w-full" type="text" name="subjects[{{ $loop->index }}][name]"
                                  value="{{ $subject->name }}" required/>
                     </div>
                     <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
                         <x-label for="subject_cycle" :value="__('Ciclo:')"/>
-                        <x-input id="subject_cycle" class="block mt-1 w-full" type="text" name="subjects[][cycle]"
+                        <x-input id="subject_cycle" class="block mt-1 w-full" type="text" name="subjects[{{ $loop->index }}][cycle]"
                                  value="{{ $subject->cycle }}" required/>
                     </div>
                     <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
-                        <x-label for="subject_afinity" :value="__('Afinidad:')"/>
-                        <select id="subject_afinity" class="block mt-1 w-full rounded-md" name="subjects[][afinity]"
+                        <x-label for="subject_affinity" :value="__('Afinidad:')"/>
+                        <select id="subject_affinity" class="block mt-1 w-full rounded-md" name="subjects[{{ $loop->index }}][affinity]"
                                 required>
                             <option value="">{{ __('Seleccione una opción') }}</option>
-                            <option value="1" {{ $subject->afinity == 1 ? 'selected' : '' }}>{{ __('Sí') }}</option>
-                            <option value="0" {{ $subject->afinity == 0 ? 'selected' : '' }}>{{ __('No') }}</option>
+                            <option value="1" {{ $subject->affinity == 1 ? 'selected' : '' }}>{{ __('Sí') }}</option>
+                            <option value="0" {{ $subject->affinity == 0 ? 'selected' : '' }}>{{ __('No') }}</option>
                         </select>
                     </div>
                     <div class="flex items-center">
                         <x-button type="button" class="remove-subject">
-                            {{ __('Eliminar') }}
+                            Eliminar
                         </x-button>
                     </div>
                 </div>
             @endforeach
-        </div>
-
-        <div class="flex justify-between">
-            <x-button id="prev-to-academic" type="button">
-                {{ __('Regresar') }}
-            </x-button>
-            <x-button id="add-subject" type="button">
-                {{ __('Agregar Materia') }}
-            </x-button>
-            <x-button id="next-to-project" type="button">
-                {{ __('Siguiente') }}
-            </x-button>
-        </div>
+        @else
+            <!-- Código para manejar el caso de creación sin materias -->
+            <div class="flex flex-col sm:flex-row mb-3 subject-item">
+                <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                    <x-label for="subject_name" :value="__('Nombre de la Materia:')"/>
+                    <x-input id="subject_name" class="block mt-1 w-full" type="text" name="subjects[0][name]"
+                             required/>
+                </div>
+                <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                    <x-label for="subject_cycle" :value="__('Ciclo:')"/>
+                    <x-input id="subject_cycle" class="block mt-1 w-full" type="text" name="subjects[0][cycle]"
+                             required/>
+                </div>
+                <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                    <x-label for="subject_affinity" :value="__('Afinidad:')"/>
+                    <select id="subject_affinity" class="block mt-1 w-full rounded-md" name="subjects[0][affinity]"
+                            required>
+                        <option value="">{{ __('Seleccione una opción') }}</option>
+                        <option value="1">{{ __('Sí') }}</option>
+                        <option value="0">{{ __('No') }}</option>
+                    </select>
+                </div>
+                <div class="flex items-center">
+                    <x-button type="button" class="remove-subject">
+                        Eliminar
+                    </x-button>
+                </div>
+            </div>
+        @endif
     </div>
+
+    <div class="flex justify-between">
+        <x-button id="prev-to-academic" type="button">
+            {{ __('Regresar') }}
+        </x-button>
+        <x-button id="add-subject" type="button">
+            {{ __('Agregar Materia') }}
+        </x-button>
+        <x-button id="next-to-project" type="button">
+            {{ __('Siguiente') }}
+        </x-button>
+    </div>
+</div>
 
     <!-- Información de Proyecto -->
     <div id="section-project" class="hidden border border-blue-200 shadow p-4 rounded-2xl my-5">
@@ -324,11 +354,13 @@
         <div class="flex flex-col sm:flex-row mb-3">
             <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
                 <x-label for="project_name" :value="__('Nombre del Proyecto:')"/>
-                <x-input id="project_name" class="block mt-1 w-full" type="text" name="project[name]" required/>
+                <x-input id="project_name" class="block mt-1 w-full" type="text" name="project[name]"
+                         value="{{ $teacher->projects[0]->name ?? '' }}" required/>
             </div>
             <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
                 <x-label for="project_year" :value="__('Año del Proyecto:')"/>
-                <x-input id="project_year" class="block mt-1 w-full" type="number" name="project[year]" required/>
+                <x-input id="project_year" class="block mt-1 w-full" type="number" name="project[year]"
+                         value="{{ $teacher->projects[0]->year ?? '' }}" required/>
             </div>
         </div>
         <div class="flex flex-col sm:flex-row mb-3">
@@ -337,19 +369,22 @@
                 <select id="research_project" class="block mt-1 w-full rounded-md" name="project[research_project]"
                         required>
                     <option value="">{{ __('Seleccione una opción') }}</option>
-                    <option value="1">{{ __('Sí') }}</option>
-                    <option value="0">{{ __('No') }}</option>
+                    <option
+                        value="1" {{ isset($teacher->projects[0]->research_project) && $teacher->projects[0]->research_project == 1 ? 'selected' : '' }}>{{ __('Sí') }}</option>
+                    <option
+                        value="0" {{ isset($teacher->projects[0]->research_project) && $teacher->projects[0]->research_project == 0 ? 'selected' : '' }}>{{ __('No') }}</option>
                 </select>
             </div>
             <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
                 <x-label for="position" :value="__('Cargo:')"/>
                 <select id="position" class="block mt-1 w-full rounded-md" name="project[position]" required>
                     <option value="">{{ __('Seleccione una opción') }}</option>
-                    <option value="Docente investigador">{{ __('Docente investigador') }}</option>
-                    <option value="Director">{{ __('Director') }}</option>
+                    <option
+                        value="Docente investigador" {{ isset($teacher->projects[0]->position) && $teacher->projects[0]->position == 'Docente investigador' ? 'selected' : '' }}>{{ __('Docente investigador') }}</option>
+                    <option
+                        value="Director" {{ isset($teacher->projects[0]->position) && $teacher->projects[0]->position == 'Director' ? 'selected' : '' }}>{{ __('Director') }}</option>
                 </select>
             </div>
-
         </div>
         <div class="flex justify-between">
             <x-button id="prev-to-subjects" type="button">

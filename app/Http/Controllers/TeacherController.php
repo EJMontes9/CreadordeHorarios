@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TeachersExport;
 use App\Models\Project;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TeachingHour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use JetBrains\PhpStorm\NoReturn;
+use Maatwebsite\Excel\Facades\Excel;
+use Ramsey\Uuid\Type\Integer;
 
 
 class TeacherController extends Controller
@@ -105,9 +109,16 @@ class TeacherController extends Controller
 
         // Crear las materias
         foreach ($request->input('subjects') as $subjectData) {
+            // Verificar si la clave 'affinity' existe en el array $subjectData
+            if (!array_key_exists('affinity', $subjectData)) {
+                // Manejar el caso en que 'affinity' no esté definido
+                return redirect()->back()->withErrors(['affinity' => 'El campo afinidad es obligatorio para todas las materias.']);
+            }
+
             Subject::create([
                 'name' => $subjectData['name'],
                 'cycle' => $subjectData['cycle'],
+                'affinity' => $subjectData['affinity'],
                 'teacher_ci' => $teacher->ci,
             ]);
         }
@@ -137,7 +148,8 @@ class TeacherController extends Controller
     public function edit(Teacher $teacher)
     {
         //$teachingHours = TeachingHour::all(); // Paso 1
-        $teacher->load('subjects'); // Load related subjects
+        $teacher->load(['subjects', 'projects']); // Load related subjects
+
         $otherOptions = ['1' => '1', '2' => '2', '3' => '3', 'none' => 'Ninguno'];
         return view('teachers.edit', compact('teacher', 'otherOptions')); // Paso 2
     }
@@ -152,5 +164,46 @@ class TeacherController extends Controller
     {
         $teacher->delete();
         return redirect()->route('teachers.index');
+    }
+
+    public function import(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:xlsx,csv',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'El archivo es requerido y debe ser de tipo xlsx o csv.',
+                'errors' => $validator->errors(),
+            ], 400);
+        }
+
+        try {
+            Excel::import(new TeachersImport, $request->file('file'));
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Profesores importados correctamente.',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Hubo un error al importar los profesores.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function downloadTemplate()
+    {
+        $filePath = storage_path('app/public/teachers_template.xlsx');
+        return response()->download($filePath, 'teachers_template.xlsx');
+    }
+
+    public function export()
+    {
+        return Excel::download(new TeachersExport, 'teachers.xlsx');
     }
 }

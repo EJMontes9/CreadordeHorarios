@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('cycle');
+            $table->boolean('affinity');
             $table->string('teacher_ci');
             $table->foreign('teacher_ci')->references('ci')->on('teachers')->onDelete('cascade');
             $table->timestamps();
