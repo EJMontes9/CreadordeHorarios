@@ -159,45 +159,4 @@ class TeacherController extends Controller
         $teacher->delete();
         return redirect()->route('teachers.index');
     }
-
-    public function import(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'file' => 'required|mimes:xlsx,csv',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'El archivo es requerido y debe ser de tipo xlsx o csv.',
-                'errors' => $validator->errors(),
-            ], 400);
-        }
-
-        try {
-            Excel::import(new TeachersImport, $request->file('file'));
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Profesores importados correctamente.',
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Hubo un error al importar los profesores.',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
-    }
-
-    public function downloadTemplate()
-    {
-        $filePath = storage_path('app/public/teachers_template.xlsx');
-        return response()->download($filePath, 'teachers_template.xlsx');
-    }
-
-    public function export()
-    {
-        return Excel::download(new TeachersExport, 'teachers.xlsx');
-    }
 }

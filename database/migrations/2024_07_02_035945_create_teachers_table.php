@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->integer('age');
             $table->string('gender');
-            $table->string('nacionality');
+            $table->string('nacionality'); //Está mal escrito
             $table->string('num_cellphone');
             $table->string('email');
             $table->string('email_ug');
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('specialty');
             $table->string('researcher');
             $table->integer('contract_hours');
-            $table->boolean('afinity');
+            $table->boolean('afinity'); //Está mal escrito
             $table->string('period');
             $table->integer('teacher_schedule_hours');
             $table->integer('class_preparation_hours');

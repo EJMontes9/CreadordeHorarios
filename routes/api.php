@@ -19,7 +19,4 @@ use App\Http\Controllers\DocumentController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/teachers/import', [TeacherController::class, 'import'])->name('api.teachers.import');
-Route::get('/teachers/export', [TeacherController::class, 'export'])->name('teachers.export');
-Route::get('/teachers/download-template', [TeacherController::class, 'downloadTemplate'])->name('teachers.downloadTemplate');
 
