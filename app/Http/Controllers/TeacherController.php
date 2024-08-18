@@ -109,12 +109,6 @@ class TeacherController extends Controller
 
         // Crear las materias
         foreach ($request->input('subjects') as $subjectData) {
-            // Verificar si la clave 'affinity' existe en el array $subjectData
-            if (!array_key_exists('affinity', $subjectData)) {
-                // Manejar el caso en que 'affinity' no esté definido
-                return redirect()->back()->withErrors(['affinity' => 'El campo afinidad es obligatorio para todas las materias.']);
-            }
-
             Subject::create([
                 'name' => $subjectData['name'],
                 'cycle' => $subjectData['cycle'],
