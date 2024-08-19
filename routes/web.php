@@ -45,7 +45,9 @@ Route::middleware([
     Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
 
     // Ruta para procesar la importación
-    Route::post('/teachers/import', [ExcelController::class, 'import'])->name('teachers.import');
+    Route::post('/import/teachers', [ExcelController::class, 'importTeachers'])->name('teachers.import');
+    Route::post('/import/subjects', [ExcelController::class, 'importSubjects'])->name('subjects.import');
+    Route::post('/import/projects', [ExcelController::class, 'importProjects'])->name('projects.import');
 });
 
 
