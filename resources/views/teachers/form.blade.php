@@ -575,49 +575,7 @@
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const subjectsContainer = document.getElementById('subjects-container');
-        const addSubjectButton = document.getElementById('add-subject');
-        let subjectIndex = 1;
-
-        addSubjectButton.addEventListener('click', function () {
-            const newSubject = document.createElement('div');
-            newSubject.classList.add('flex', 'flex-col', 'sm:flex-row', 'mb-3', 'subject-item');
-            newSubject.innerHTML = `
-            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
-                <x-label for="subject_name_${subjectIndex}" :value="__('Nombre de la Materia:')"/>
-                <x-input id="subject_name_${subjectIndex}" class="block mt-1 w-full" type="text" name="subjects[${subjectIndex}][name]" required/>
-            </div>
-            <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
-                    <x-label for="subject_cycle_${subjectIndex}" :value="__('Ciclo:')"/>
-                    <x-input id="subject_cycle_${subjectIndex}" class="block mt-1 w-full" type="text" name="subjects[${subjectIndex}][cycle]" required/>
-                </div>
-            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
-                <x-label for="subject_affinity_${subjectIndex}" :value="__('Afinidad:')"/>
-                <select id="subject_affinity_${subjectIndex}" class="block mt-1 w-full rounded-md" name="subjects[${subjectIndex}][affinity]" required>
-                    <option value="">{{ __('Seleccione una opción') }}</option>
-                    <option value="1">{{ __('Sí') }}</option>
-                    <option value="0">{{ __('No') }}</option>
-                </select>
-            </div>
-            <div class="flex items-center">
-                <x-button type="button" class="remove-subject bg-red-500 hover:bg-red-600 text-white font-bold px-2 rounded">
-                    {{ __('Eliminar') }}
-            </x-button>
-        </div>
-`;
-            subjectsContainer.appendChild(newSubject);
-            subjectIndex++;
-        });
-
-        subjectsContainer.addEventListener('click', function (event) {
-            if (event.target.classList.contains('remove-subject')) {
-                event.target.closest('.subject-item').remove();
-            }
-        });
-    });
-
-    document.getElementById('date_of_birth').addEventListener('change', function () {
+    document.getElementById('date_of_birth').addEventListener('change', function() {
         var date_of_birth = new Date(this.value);
         var today = new Date();
         var age = today.getFullYear() - date_of_birth.getFullYear();
@@ -640,43 +598,18 @@
         }
     }
 
-    function validateEmail(input) {
-        const email = input.value;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const errorId = input.id + '-error';
-        if (!emailRegex.test(email)) {
-            document.getElementById(errorId).classList.remove('hidden');
-        } else {
-            document.getElementById(errorId).classList.add('hidden');
-        }
-    }
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const sections = {
-            personal: document.getElementById('section-personal'),
-            contact: document.getElementById('section-contact'),
-            academic: document.getElementById('section-academic'),
-            subjects: document.getElementById('section-subjects'),
-            project: document.getElementById('section-project'),
-            planification: document.getElementById('section-planification')
-        };
-
-        const buttons = {
-            nextToContact: document.getElementById('next-to-contact'),
-            prevToPersonal: document.getElementById('prev-to-personal'),
-            nextToAcademic: document.getElementById('next-to-academic'),
-            prevToContact: document.getElementById('prev-to-contact'),
-            nextToSubjects: document.getElementById('next-to-subjects'),
-            prevToAcademic: document.getElementById('prev-to-academic'),
-            nextToProject: document.getElementById('next-to-project'),
-            prevToSubjects: document.getElementById('prev-to-subjects'),
-            nextToPlanification: document.getElementById('next-to-planification'),
-            prevToProject: document.getElementById('prev-to-project'),
-            submitForm: document.getElementById('submit-form'),
-        };
-
-        let subjectIndex = 1;
+    document.addEventListener('DOMContentLoaded', function() {
+        const personalSection = document.getElementById('section-personal');
+        const contactSection = document.getElementById('section-contact');
+        const academicSection = document.getElementById('section-academic');
+        const planificationSection = document.getElementById('section-planification');
+        const nextToContactButton = document.getElementById('next-to-contact');
+        const prevToPersonalButton = document.getElementById('prev-to-personal');
+        const nextToAcademicButton = document.getElementById('next-to-academic');
+        const prevToContactButton = document.getElementById('prev-to-contact');
+        const nextToPlanificationButton = document.getElementById('next-to-planification');
+        const prevToAcademicButton = document.getElementById('prev-to-academic');
+        const submitFormButton = document.getElementById('submit-form');
 
         function showSection(sectionToShow) {
             Object.values(sections).forEach(section => section.classList.add('hidden'));
@@ -699,58 +632,47 @@
             return valid;
         }
 
-        buttons.nextToContact.addEventListener('click', function () {
-            if (validateSection(sections.personal)) {
-                showSection(sections.contact);
+        nextToContactButton.addEventListener('click', function() {
+            if (validateSection(personalSection)) {
+                showSection(contactSection);
+            } else {
+                alert(
+                    'Por favor, complete todos los campos requeridos en la sección de Información Personal.');
             }
         });
 
-        buttons.prevToPersonal.addEventListener('click', function () {
-            showSection(sections.personal);
+        prevToPersonalButton.addEventListener('click', function() {
+            showSection(personalSection);
         });
 
-        buttons.nextToAcademic.addEventListener('click', function () {
-            if (validateSection(sections.contact)) {
-                showSection(sections.academic);
+        nextToAcademicButton.addEventListener('click', function() {
+            if (validateSection(contactSection)) {
+                showSection(academicSection);
+            } else {
+                alert(
+                    'Por favor, complete todos los campos requeridos en la sección de Información de Contactos.');
             }
         });
 
-        buttons.prevToContact.addEventListener('click', function () {
-            showSection(sections.contact);
+        prevToContactButton.addEventListener('click', function() {
+            showSection(contactSection);
         });
 
-        buttons.nextToSubjects.addEventListener('click', function () {
-            if (validateSection(sections.academic)) {
-                showSection(sections.subjects);
+        nextToPlanificationButton.addEventListener('click', function() {
+            if (validateSection(academicSection)) {
+                showSection(planificationSection);
+            } else {
+                alert(
+                    'Por favor, complete todos los campos requeridos en la sección de Información Académica.');
             }
         });
 
-        buttons.prevToAcademic.addEventListener('click', function () {
-            showSection(sections.academic);
+        prevToAcademicButton.addEventListener('click', function() {
+            showSection(academicSection);
         });
 
-        buttons.nextToProject.addEventListener('click', function () {
-            if (validateSection(sections.subjects)) {
-                showSection(sections.project);
-            }
-        });
-
-        buttons.prevToSubjects.addEventListener('click', function () {
-            showSection(sections.subjects);
-        });
-
-        buttons.nextToPlanification.addEventListener('click', function () {
-            if (validateSection(sections.project)) {
-                showSection(sections.planification);
-            }
-        });
-
-        buttons.prevToProject.addEventListener('click', function () {
-            showSection(sections.project);
-        });
-
-        buttons.submitForm.addEventListener('click', function () {
-            if (validateSection(sections.planification)) {
+        submitFormButton.addEventListener('click', function() {
+            if (validateSection(planificationSection)) {
                 document.getElementById('form-all').submit();
             }
         });
