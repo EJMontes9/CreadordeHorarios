@@ -12,14 +12,15 @@
                     <div class="mt-8 text-2xl font-semibold text-center mb-5">
                         Información del Profesor
                     </div>
-                    <div x-data="{ open: null }" id="accordion">
+
+                    <div x-data="{ open: null }">
                         <!-- Card para Información Personal -->
                         <div class="card border border-gray-300 shadow p-4 rounded-lg mb-4 hover:shadow-lg">
                             <h3 class="text-center font-semibold text-lg mb-4 cursor-pointer"
                                 @click="open = open === 0 ? null : 0">
                                 Información Personal
                             </h3>
-                            <div x-show="open === 0" x-transition class="grid grid-cols-2 gap-4 accordion-section">
+                            <div x-show="open === 0" x-transition class="grid grid-cols-2 gap-4">
                                 <div>
                                     <p class="font-semibold">Cédula de Identidad:</p>
                                     <p>{{ $teacher->ci ?? '' }}</p>
@@ -57,7 +58,7 @@
                                 @click="open = open === 1 ? null : 1">
                                 Información de Contactos
                             </h3>
-                            <div x-show="open === 1" x-transition class="grid grid-cols-2 gap-4 accordion-section">
+                            <div x-show="open === 1" x-transition class="grid grid-cols-2 gap-4">
                                 <div>
                                     <p class="font-semibold">Número de Celular:</p>
                                     <p>{{ $teacher->num_cellphone ?? '' }}</p>
@@ -79,7 +80,7 @@
                                 @click="open = open === 2 ? null : 2">
                                 Información Académica
                             </h3>
-                            <div x-show="open === 2" x-transition class="grid grid-cols-2 gap-4 accordion-section">
+                            <div x-show="open === 2" x-transition class="grid grid-cols-2 gap-4">
                                 <div>
                                     <p class="font-semibold">Fecha de Ingreso:</p>
                                     <p>{{ $teacher->date_of_admission ?? '' }}</p>
@@ -144,7 +145,7 @@
                                 @click="open = open === 4 ? null : 4">
                                 Materias
                             </h3>
-                            <div x-show="open === 4" x-transition class="grid grid-cols-2 gap-4 accordion-section">
+                            <div x-show="open === 4" x-transition class="grid grid-cols-2 gap-4">
                                 @foreach($teacher->subjects as $subject)
                                     <div class="border p-4 rounded-lg">
                                         <p><strong>Nombre:</strong> {{ $subject->name }}</p>
@@ -161,14 +162,12 @@
                                 @click="open = open === 5 ? null : 5">
                                 Proyectos
                             </h3>
-                            <div x-show="open === 5" x-transition class="grid grid-cols-2 gap-4 accordion-section">
+                            <div x-show="open === 5" x-transition class="grid grid-cols-2 gap-4">
                                 @foreach($teacher->projects as $project)
                                     <div class="border p-4 rounded-lg">
                                         <p><strong>Nombre:</strong> {{ $project->name }}</p>
                                         <p><strong>Año:</strong> {{ $project->year }}</p>
-                                        <p><strong>Proyecto de
-                                                Investigación:</strong> {{ $project->research_project ? 'Sí' : 'No' }}
-                                        </p>
+                                        <p><strong>Proyecto de Investigación:</strong> {{ $project->research_project ? 'Sí' : 'No' }}</p>
                                         <p><strong>Posición:</strong> {{ $project->position }}</p>
                                     </div>
                                 @endforeach
@@ -181,7 +180,7 @@
                                 @click="open = open === 3 ? null : 3">
                                 Información de Planificación
                             </h3>
-                            <div x-show="open === 3" x-transition class="grid grid-cols-2 gap-4 accordion-section">
+                            <div x-show="open === 3" x-transition class="grid grid-cols-2 gap-4">
                                 <div>
                                     <p class="font-semibold">Periodo:</p>
                                     <p>{{ $teacher->period ?? '' }}</p>
@@ -256,20 +255,20 @@
                         <!-- Gestión Academica 5 años, modal -->
                         <!-- Modal toggle -->
                         <button data-modal-target="default-modal" data-modal-toggle="default-modal"
-                                class="my-10 block mx-auto text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
-                                type="button">
+                            class="my-10 block mx-auto text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-semibold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+                            type="button">
                             VER HISTÓRICO DE GESTIÓN DE HACE 5 AÑOS
                         </button>
 
                         <!-- Main modal -->
                         <div id="default-modal" tabindex="-1" aria-hidden="true"
-                             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div class="relative p-4 w-full max-w-4xl max-h-full">
                                 <!-- Modal content -->
                                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                     <!-- Modal header -->
                                     <div
-                                            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                         <div class="flex-grow text-center">
                                             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                                 GESTIÓN DE HACE 5 AÑOS
@@ -284,7 +283,7 @@
                                             </h2>
                                             <div class="mt-4">
                                                 <select id="periodoSelect" onchange="filtrarPorPeriodo()"
-                                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:text-white">
+                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white dark:bg-gray-700 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:text-white">
                                                     <option value="">Seleccione un Periodo para Filtrar</option>
                                                     @php
                                                         $periodosUnicos = [];
@@ -308,183 +307,160 @@
                                         <div class="contenedor-tabla">
                                             <!-- Mensaje cuando no hay datos disponibles -->
                                             <div id="no-data-message" class="hidden text-center text-gray-500">
-                                                <p class="text-lg">No hay datos históricos disponibles para este
-                                                    Profesor . . .</p>
+                                                <p class="text-lg">No hay datos históricos disponibles para este Profesor . . .</p>
                                             </div>
                                             <table id="historical-table"
-                                                   class="min-w-full divide-y divide-gray-200 hidden">
+                                                class="min-w-full divide-y divide-gray-200 hidden">
                                                 <thead class="bg-gray-50">
-                                                <tr>
-                                                    <th
+                                                    <tr>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold hidden">
-                                                        COD PLECTIVO
-                                                    </th>
-                                                    <th
+                                                            COD PLECTIVO</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        PERIODO
-                                                    </th>
-                                                    <th
+                                                            PERIODO</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        FACULTAD
-                                                    </th>
-                                                    <th
+                                                            FACULTAD</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        CARRERA
-                                                    </th>
-                                                    <th
+                                                            CARRERA</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        NIVEL
-                                                    </th>
-                                                    <th
+                                                            NIVEL</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        MATERIA
-                                                    </th>
-                                                    <th
+                                                            MATERIA</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        GRUPO
-                                                    </th>
-                                                    <th
+                                                            GRUPO</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        AULA
-                                                    </th>
-                                                    <th
+                                                            AULA</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        MODALIDAD
-                                                    </th>
-                                                    <th
+                                                            MODALIDAD</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        MODALIDAD MALLA
-                                                    </th>
-                                                    <th
+                                                            MODALIDAD MALLA</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        CON MOVILIDAD
-                                                    </th>
-                                                    <th
+                                                            CON MOVILIDAD</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold hidden">
-                                                        IDENTIFICACION
-                                                    </th>
-                                                    <th
+                                                            IDENTIFICACION</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold hidden">
-                                                        DOCENTE
-                                                    </th>
-                                                    <th
+                                                            DOCENTE</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        JORNADA
-                                                    </th>
-                                                    <th
+                                                            JORNADA</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        HORAS
-                                                    </th>
-                                                    <th
+                                                            HORAS</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        LUNES
-                                                    </th>
-                                                    <th
+                                                            LUNES</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        MARTES
-                                                    </th>
-                                                    <th
+                                                            MARTES</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        MIERCOLES
-                                                    </th>
-                                                    <th
+                                                            MIERCOLES</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        JUEVES
-                                                    </th>
-                                                    <th
+                                                            JUEVES</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        VIERNES
-                                                    </th>
-                                                    <th
+                                                            VIERNES</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        SABADO
-                                                    </th>
-                                                    <th
+                                                            SABADO</th>
+                                                        <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
-                                                        DOMINGO
-                                                    </th>
-                                                </tr>
+                                                            DOMINGO</th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody class="bg-white divide-y divide-gray-200">
-                                                @foreach ($teachers as $teacher)
-                                                    <tr data-periodo="{{ $teacher->PERIODO }}">
-                                                        <td
+                                                    @foreach ($teachers as $teacher)
+                                                        <tr data-periodo="{{ $teacher->PERIODO }}">
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden">
-                                                            {{ $teacher->COD_PLECTIVO }}</td>
-                                                        <td
+                                                                {{ $teacher->COD_PLECTIVO }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->PERIODO }}</td>
-                                                        <td
+                                                                {{ $teacher->PERIODO }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->FACULTAD }}</td>
-                                                        <td
+                                                                {{ $teacher->FACULTAD }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->CARRERA }}</td>
-                                                        <td
+                                                                {{ $teacher->CARRERA }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->NIVEL }}</td>
-                                                        <td
+                                                                {{ $teacher->NIVEL }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->MATERIA }}</td>
-                                                        <td
+                                                                {{ $teacher->MATERIA }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->GRUPO }}</td>
-                                                        <td
+                                                                {{ $teacher->GRUPO }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->AULA }}</td>
-                                                        <td
+                                                                {{ $teacher->AULA }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->MODALIDAD }}</td>
-                                                        <td
+                                                                {{ $teacher->MODALIDAD }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->MODALIDAD_MALLA }}</td>
-                                                        <td
+                                                                {{ $teacher->MODALIDAD_MALLA }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->CON_MOVILIDAD }}</td>
-                                                        <td
+                                                                {{ $teacher->CON_MOVILIDAD }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden">
-                                                            {{ $teacher->IDENTIFICACION }}</td>
-                                                        <td
+                                                                {{ $teacher->IDENTIFICACION }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden">
-                                                            {{ $teacher->DOCENTE }}</td>
-                                                        <td
+                                                                {{ $teacher->DOCENTE }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->JORNADA }}</td>
-                                                        <td
+                                                                {{ $teacher->JORNADA }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->HORAS }}</td>
-                                                        <td
+                                                                {{ $teacher->HORAS }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->LUNES }}</td>
-                                                        <td
+                                                                {{ $teacher->LUNES }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->MARTES }}</td>
-                                                        <td
+                                                                {{ $teacher->MARTES }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->MIERCOLES }}</td>
-                                                        <td
+                                                                {{ $teacher->MIERCOLES }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->JUEVES }}</td>
-                                                        <td
+                                                                {{ $teacher->JUEVES }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->VIERNES }}</td>
-                                                        <td
+                                                                {{ $teacher->VIERNES }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->SABADO }}</td>
-                                                        <td
+                                                                {{ $teacher->SABADO }}</td>
+                                                            <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                                                            {{ $teacher->DOMINGO }}</td>
-                                                    </tr>
-                                                @endforeach
+                                                                {{ $teacher->DOMINGO }}</td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <!-- Modal footer -->
                                     <div
-                                            class="flex items-center justify-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                        class="flex items-center justify-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                                         <button data-modal-hide="default-modal" type="button"
-                                                class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                                            class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                                             Cerrar
                                         </button>
                                     </div>
@@ -494,21 +470,14 @@
 
                         <div class="flex justify-left items-center px-4 py-4 sm:px-6">
                             <a href="{{ route('teachers.index') }}"
-                               class="inline-block text-sm text-white whitespace-nowrap py-2 px-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 font-semibold rounded-lg">
+                                class="inline-block text-sm text-white whitespace-nowrap py-2 px-4 bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 font-semibold rounded-lg">
                                 Volver a la lista
                             </a>
-                        </div>
-                        <!-- Botón de Imprimir -->
-                        <div class="text-center mt-4">
-                            <button onclick="printContent()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Imprimir Información
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </x-app-layout>t>
 
 <style>
@@ -531,28 +500,11 @@
 </style>
 
 <script>
-
-    function printContent() {
-        // Abrir todas las secciones
-        var sections = document.querySelectorAll('.accordion-section');
-        sections.forEach(function(section) {
-            section.style.display = 'block';
-        });
-
-        // Realizar la impresión
-        window.print();
-
-        // Restaurar el estado original después de imprimir
-        sections.forEach(function(section) {
-            section.style.display = '';
-        });
-    }
-
     function filtrarPorPeriodo() {
         var seleccionado = document.getElementById("periodoSelect").value;
         var filas = document.querySelectorAll("table tr[data-periodo]");
 
-        filas.forEach(function (fila) {
+        filas.forEach(function(fila) {
             // Obtiene el valor del atributo data-periodo de la fila
             var periodo = fila.getAttribute("data-periodo");
 
@@ -565,7 +517,7 @@
     }
 
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         var teachers = @json($teachers);
         var table = document.getElementById('historical-table');
         var noDataMessage = document.getElementById('no-data-message');
