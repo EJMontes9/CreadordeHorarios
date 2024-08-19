@@ -53,6 +53,7 @@ class TeacherController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
         // Crear el registro del Teacher
         $teacher = Teacher::create([
             'ci' => $request->input('ci'),
