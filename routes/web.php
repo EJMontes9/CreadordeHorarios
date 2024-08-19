@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExcelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\DocumentController;
@@ -42,6 +43,11 @@ Route::middleware([
         ->where('subIds', '.*')
         ->name('documents.specific');
     Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
+
+    // Ruta para procesar la importación
+    Route::post('/import/teachers', [ExcelController::class, 'importTeachers'])->name('teachers.import');
+    Route::post('/import/subjects', [ExcelController::class, 'importSubjects'])->name('subjects.import');
+    Route::post('/import/projects', [ExcelController::class, 'importProjects'])->name('projects.import');
 });
 
 

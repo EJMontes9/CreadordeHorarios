@@ -66,4 +66,16 @@ class Teacher extends Model
     {
         return $this->hasMany(Historic::class, 'IDENTIFICACION', 'ci');
     }
+
+    // Relación con el modelo Subject
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class, 'teacher_ci', 'ci');
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'teacher_id', 'ci');
+    }
+
 }

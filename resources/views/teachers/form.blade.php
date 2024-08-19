@@ -1,16 +1,24 @@
 <div class="flex justify-center">
     <ol id="progress-bar" class="flex item-center w-full mb-4 sm:mb-5 ml-7 mr-3">
         <li
-                class="step flex w-1/4 items-center justify-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
+            class="step flex w-1/4 items-center justify-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
             <span class="text-center mx-5">Información Personal</span>
         </li>
         <li
-                class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <span class="text-center mx-5">Contactos</span>
         </li>
         <li
-                class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <span class="text-center mx-5">Información Académica</span>
+        </li>
+        <li
+            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+            <span class="text-center mx-5">Información de Materias</span>
+        </li>
+        <li
+            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+            <span class="text-center mx-5">Información de Proyectos</span>
         </li>
         <li class="step flex items-center w-1/4 justify-center">
             <span class="text-center mx-5">Información Planificación</span>
@@ -176,7 +184,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                                {{ isset($teacher->master_degree) && $teacher->master_degree == $value ? 'selected' : '' }}>
+                            {{ isset($teacher->master_degree) && $teacher->master_degree == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -187,7 +195,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                                {{ isset($teacher->doctorate) && $teacher->doctorate == $value ? 'selected' : '' }}>
+                            {{ isset($teacher->doctorate) && $teacher->doctorate == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -198,7 +206,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                                {{ isset($teacher->specialty) && $teacher->specialty == $value ? 'selected' : '' }}>
+                            {{ isset($teacher->specialty) && $teacher->specialty == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -209,7 +217,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                                {{ isset($teacher->researcher) && $teacher->researcher == $value ? 'selected' : '' }}>
+                            {{ isset($teacher->researcher) && $teacher->researcher == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -246,6 +254,140 @@
         </div>
         <div class="flex justify-between">
             <x-button id="prev-to-contact" type="button">
+                {{ __('Regresar') }}
+            </x-button>
+            <x-button id="next-to-subjects" type="button">
+                {{ __('Siguiente') }}
+            </x-button>
+        </div>
+    </div>
+
+    <!-- Información de Materias -->
+<div id="section-subjects" class="hidden border border-blue-200 shadow p-4 rounded-2xl my-5">
+    <div class="flex flex-row mb-3 mt-2">
+        <div class="w-full">
+            <h3 class="text-center font-semibold text-lg">INFORMACIÓN DE MATERIAS</h3>
+        </div>
+    </div>
+
+    <div id="subjects-container">
+        @if(isset($teacher) && $teacher->subjects)
+            @foreach($teacher->subjects as $subject)
+                <div class="flex flex-col sm:flex-row mb-3 subject-item">
+                    <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                        <x-label for="subject_name" :value="__('Nombre de la Materia:')"/>
+                        <x-input id="subject_name" class="block mt-1 w-full" type="text" name="subjects[{{ $loop->index }}][name]"
+                                 value="{{ $subject->name }}" required/>
+                    </div>
+                    <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                        <x-label for="subject_cycle" :value="__('Ciclo:')"/>
+                        <x-input id="subject_cycle" class="block mt-1 w-full" type="text" name="subjects[{{ $loop->index }}][cycle]"
+                                 value="{{ $subject->cycle }}" required/>
+                    </div>
+                    <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                        <x-label for="subject_affinity" :value="__('Afinidad:')"/>
+                        <select id="subject_affinity" class="block mt-1 w-full rounded-md" name="subjects[{{ $loop->index }}][affinity]"
+                                required>
+                            <option value="">{{ __('Seleccione una opción') }}</option>
+                            <option value="1" {{ $subject->affinity == 1 ? 'selected' : '' }}>{{ __('Sí') }}</option>
+                            <option value="0" {{ $subject->affinity == 0 ? 'selected' : '' }}>{{ __('No') }}</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center">
+                        <x-button type="button" class="remove-subject bg-red-500 hover:bg-red-600 text-white">
+                            Eliminar2
+                        </x-button>
+                    </div>
+                </div>
+            @endforeach
+        @else
+            <!-- Código para manejar el caso de creación sin materias -->
+            <div class="flex flex-col sm:flex-row mb-3 subject-item">
+                <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                    <x-label for="subject_name" :value="__('Nombre de la Materia:')"/>
+                    <x-input id="subject_name" class="block mt-1 w-full" type="text" name="subjects[0][name]"
+                             required/>
+                </div>
+                <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                    <x-label for="subject_cycle" :value="__('Ciclo:')"/>
+                    <x-input id="subject_cycle" class="block mt-1 w-full" type="text" name="subjects[0][cycle]"
+                             required/>
+                </div>
+                <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                    <x-label for="subject_affinity" :value="__('Afinidad:')"/>
+                    <select id="subject_affinity" class="block mt-1 w-full rounded-md" name="subjects[0][affinity]"
+                            required>
+                        <option value="">{{ __('Seleccione una opción') }}</option>
+                        <option value="1">{{ __('Sí') }}</option>
+                        <option value="0">{{ __('No') }}</option>
+                    </select>
+                </div>
+                <div class="flex items-center">
+                    <x-button type="button" class="remove-subject bg-red-500 hover:bg-red-600 text-white">
+                        Eliminar2
+                    </x-button>
+                </div>
+            </div>
+        @endif
+    </div>
+
+    <div class="flex justify-between">
+        <x-button id="prev-to-academic" type="button">
+            {{ __('Regresar') }}
+        </x-button>
+        <x-button class="bg-green-500 hover:bg-green-600 text-white" id="add-subject" type="button">
+            {{ __('Agregar Materia') }}
+        </x-button>
+        <x-button id="next-to-project" type="button">
+            {{ __('Siguiente') }}
+        </x-button>
+    </div>
+</div>
+
+    <!-- Información de Proyecto -->
+    <div id="section-project" class="hidden border border-blue-200 shadow p-4 rounded-2xl my-5">
+        <div class="flex flex-row mb-3 mt-2">
+            <div class="w-full">
+                <h3 class="text-center font-semibold text-lg">INFORMACIÓN DE PROYECTO</h3>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row mb-3">
+            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
+                <x-label for="project_name" :value="__('Nombre del Proyecto:')"/>
+                <x-input id="project_name" class="block mt-1 w-full" type="text" name="project[name]"
+                         value="{{ $teacher->projects[0]->name ?? '' }}" required/>
+            </div>
+            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
+                <x-label for="project_year" :value="__('Año del Proyecto:')"/>
+                <x-input id="project_year" class="block mt-1 w-full" type="number" name="project[year]"
+                         value="{{ $teacher->projects[0]->year ?? '' }}" required/>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row mb-3">
+            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
+                <x-label for="research_project" :value="__('¿Proyecto de investigación?')"/>
+                <select id="research_project" class="block mt-1 w-full rounded-md" name="project[research_project]"
+                        required>
+                    <option value="">{{ __('Seleccione una opción') }}</option>
+                    <option
+                        value="1" {{ isset($teacher->projects[0]->research_project) && $teacher->projects[0]->research_project == 1 ? 'selected' : '' }}>{{ __('Sí') }}</option>
+                    <option
+                        value="0" {{ isset($teacher->projects[0]->research_project) && $teacher->projects[0]->research_project == 0 ? 'selected' : '' }}>{{ __('No') }}</option>
+                </select>
+            </div>
+            <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
+                <x-label for="position" :value="__('Cargo:')"/>
+                <select id="position" class="block mt-1 w-full rounded-md" name="project[position]" required>
+                    <option value="">{{ __('Seleccione una opción') }}</option>
+                    <option
+                        value="Docente investigador" {{ isset($teacher->projects[0]->position) && $teacher->projects[0]->position == 'Docente investigador' ? 'selected' : '' }}>{{ __('Docente investigador') }}</option>
+                    <option
+                        value="Director" {{ isset($teacher->projects[0]->position) && $teacher->projects[0]->position == 'Director' ? 'selected' : '' }}>{{ __('Director') }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="flex justify-between">
+            <x-button id="prev-to-subjects" type="button">
                 {{ __('Regresar') }}
             </x-button>
             <x-button id="next-to-planification" type="button">
@@ -367,7 +509,7 @@
             </div>
         </div>
         <div class="flex justify-between">
-            <x-button id="prev-to-academic" type="button">
+            <x-button id="prev-to-project" type="button">
                 {{ __('Regresar') }}
             </x-button>
             <x-button id="submit-form" type="submit">
@@ -433,7 +575,7 @@
 </style>
 
 <script>
-    document.getElementById('date_of_birth').addEventListener('change', function () {
+    document.getElementById('date_of_birth').addEventListener('change', function() {
         var date_of_birth = new Date(this.value);
         var today = new Date();
         var age = today.getFullYear() - date_of_birth.getFullYear();
@@ -456,7 +598,7 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const personalSection = document.getElementById('section-personal');
         const contactSection = document.getElementById('section-contact');
         const academicSection = document.getElementById('section-academic');
@@ -470,10 +612,7 @@
         const submitFormButton = document.getElementById('submit-form');
 
         function showSection(sectionToShow) {
-            personalSection.classList.add('hidden');
-            contactSection.classList.add('hidden');
-            academicSection.classList.add('hidden');
-            planificationSection.classList.add('hidden');
+            Object.values(sections).forEach(section => section.classList.add('hidden'));
             sectionToShow.classList.remove('hidden');
         }
 
@@ -483,19 +622,17 @@
 
             inputs.forEach(input => {
                 if (!input.value.trim()) {
-                    valid = false;
                     input.classList.add('border-red-500');
-                    input.classList.remove('border-gray-300');
+                    valid = false;
                 } else {
                     input.classList.remove('border-red-500');
-                    input.classList.add('border-gray-300');
                 }
             });
 
             return valid;
         }
 
-        nextToContactButton.addEventListener('click', function () {
+        nextToContactButton.addEventListener('click', function() {
             if (validateSection(personalSection)) {
                 showSection(contactSection);
             } else {
@@ -504,11 +641,11 @@
             }
         });
 
-        prevToPersonalButton.addEventListener('click', function () {
+        prevToPersonalButton.addEventListener('click', function() {
             showSection(personalSection);
         });
 
-        nextToAcademicButton.addEventListener('click', function () {
+        nextToAcademicButton.addEventListener('click', function() {
             if (validateSection(contactSection)) {
                 showSection(academicSection);
             } else {
@@ -517,11 +654,11 @@
             }
         });
 
-        prevToContactButton.addEventListener('click', function () {
+        prevToContactButton.addEventListener('click', function() {
             showSection(contactSection);
         });
 
-        nextToPlanificationButton.addEventListener('click', function () {
+        nextToPlanificationButton.addEventListener('click', function() {
             if (validateSection(academicSection)) {
                 showSection(planificationSection);
             } else {
@@ -530,28 +667,16 @@
             }
         });
 
-        prevToAcademicButton.addEventListener('click', function () {
+        prevToAcademicButton.addEventListener('click', function() {
             showSection(academicSection);
         });
 
-        submitFormButton.addEventListener('click', function () {
+        submitFormButton.addEventListener('click', function() {
             if (validateSection(planificationSection)) {
                 document.getElementById('form-all').submit();
-            } else {
-                alert(
-                    'Por favor, complete todos los campos requeridos en la sección de Información de Planificación.');
             }
         });
+
     });
 
-    function validateEmail(input) {
-        const email = input.value;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const errorId = input.id + '-error';
-        if (!emailRegex.test(email)) {
-            document.getElementById(errorId).classList.remove('hidden');
-        } else {
-            document.getElementById(errorId).classList.add('hidden');
-        }
-    }
 </script>

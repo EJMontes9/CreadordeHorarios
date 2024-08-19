@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TeacherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocumentController;
@@ -18,3 +19,4 @@ use App\Http\Controllers\DocumentController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+

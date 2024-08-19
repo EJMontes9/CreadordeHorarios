@@ -140,6 +140,40 @@
                             </div>
                         </div>
 
+                        <div class="card border border-gray-300 shadow p-4 rounded-lg mb-4 hover:shadow-lg">
+                            <h3 class="text-center font-semibold text-lg mb-4 cursor-pointer"
+                                @click="open = open === 4 ? null : 4">
+                                Materias
+                            </h3>
+                            <div x-show="open === 4" x-transition class="grid grid-cols-2 gap-4">
+                                @foreach($teacher->subjects as $subject)
+                                    <div class="border p-4 rounded-lg">
+                                        <p><strong>Nombre:</strong> {{ $subject->name }}</p>
+                                        <p><strong>Ciclo:</strong> {{ $subject->cycle }}</p>
+                                        <p><strong>Afinidad:</strong> {{ $subject->afinity }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- Card para Projects -->
+                        <div class="card border border-gray-300 shadow p-4 rounded-lg mb-4 hover:shadow-lg">
+                            <h3 class="text-center font-semibold text-lg mb-4 cursor-pointer"
+                                @click="open = open === 5 ? null : 5">
+                                Proyectos
+                            </h3>
+                            <div x-show="open === 5" x-transition class="grid grid-cols-2 gap-4">
+                                @foreach($teacher->projects as $project)
+                                    <div class="border p-4 rounded-lg">
+                                        <p><strong>Nombre:</strong> {{ $project->name }}</p>
+                                        <p><strong>Año:</strong> {{ $project->year }}</p>
+                                        <p><strong>Proyecto de Investigación:</strong> {{ $project->research_project ? 'Sí' : 'No' }}</p>
+                                        <p><strong>Posición:</strong> {{ $project->position }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
                         <!-- Card para Información de Planificación -->
                         <div class="card border border-gray-300 shadow p-4 rounded-lg mb-4 hover:shadow-lg">
                             <h3 class="text-center font-semibold text-lg mb-4 cursor-pointer"
@@ -280,7 +314,7 @@
                                                 <thead class="bg-gray-50">
                                                     <tr>
                                                         <th
-                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
+                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold hidden">
                                                             COD PLECTIVO</th>
                                                         <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
@@ -313,10 +347,10 @@
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
                                                             CON MOVILIDAD</th>
                                                         <th
-                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
+                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold hidden">
                                                             IDENTIFICACION</th>
                                                         <th
-                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
+                                                            class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold hidden">
                                                             DOCENTE</th>
                                                         <th
                                                             class="px-6 py-3 text-center text-sm text-gray-500 uppercase tracking-wider font-bold">
@@ -351,7 +385,7 @@
                                                     @foreach ($teachers as $teacher)
                                                         <tr data-periodo="{{ $teacher->PERIODO }}">
                                                             <td
-                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden">
                                                                 {{ $teacher->COD_PLECTIVO }}</td>
                                                             <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
@@ -384,10 +418,10 @@
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                                                                 {{ $teacher->CON_MOVILIDAD }}</td>
                                                             <td
-                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden">
                                                                 {{ $teacher->IDENTIFICACION }}</td>
                                                             <td
-                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center hidden">
                                                                 {{ $teacher->DOCENTE }}</td>
                                                             <td
                                                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">

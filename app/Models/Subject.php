@@ -11,12 +11,14 @@ class Subject extends Model
 
     protected $fillable = [
         'name',
-        'degrees',
+        'cycle',
+        'affinity',
+        'teacher_ci',
     ];
 
-    // Relación uno a muchos con Schedule (si es necesario)
-    public function schedules()
+    // Relación con el modelo Teacher
+    public function teacher()
     {
-        return $this->hasMany(Schedule::class);
+        return $this->belongsTo(Teacher::class, 'teacher_ci', 'ci');
     }
 }
