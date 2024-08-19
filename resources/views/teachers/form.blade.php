@@ -294,8 +294,8 @@
                         </select>
                     </div>
                     <div class="flex items-center">
-                        <x-button type="button" class="remove-subject">
-                            Eliminar
+                        <x-button type="button" class="remove-subject bg-red-500 hover:bg-red-600 text-white">
+                            Eliminar2
                         </x-button>
                     </div>
                 </div>
@@ -323,8 +323,8 @@
                     </select>
                 </div>
                 <div class="flex items-center">
-                    <x-button type="button" class="remove-subject">
-                        Eliminar
+                    <x-button type="button" class="remove-subject bg-red-500 hover:bg-red-600 text-white">
+                        Eliminar2
                     </x-button>
                 </div>
             </div>
@@ -335,7 +335,7 @@
         <x-button id="prev-to-academic" type="button">
             {{ __('Regresar') }}
         </x-button>
-        <x-button id="add-subject" type="button">
+        <x-button class="bg-green-500 hover:bg-green-600 text-white" id="add-subject" type="button">
             {{ __('Agregar Materia') }}
         </x-button>
         <x-button id="next-to-project" type="button">
