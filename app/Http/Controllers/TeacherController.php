@@ -79,7 +79,6 @@ class TeacherController extends Controller
             'specialty' => $request->input('specialty'),
             'researcher' => $request->input('researcher'),
             'contract_hours' => $request->input('contract_hours'),
-            'afinity' => $request->input('afinity'),
             'period' => $request->input('period'),
             'teacher_schedule_hours' => $request->input('teacher_schedule_hours'),
             'class_preparation_hours' => $request->input('class_preparation_hours'),

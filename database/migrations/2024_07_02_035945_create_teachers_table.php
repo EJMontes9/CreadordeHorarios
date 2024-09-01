@@ -36,7 +36,6 @@ return new class extends Migration
             $table->string('specialty');
             $table->string('researcher');
             $table->integer('contract_hours');
-            $table->boolean('afinity'); //Está mal escrito
             $table->string('period');
             $table->integer('teacher_schedule_hours');
             $table->integer('class_preparation_hours');

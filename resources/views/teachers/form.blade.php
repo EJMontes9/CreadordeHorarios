@@ -241,16 +241,6 @@
                 <x-input id="career" class="block mt-1 w-full" type="text" name="career"
                          value="{{ $teacher->career ?? '' }}" required/>
             </div>
-            <div class="flex flex-col w-full sm:w-1/3 sm:mr-3">
-                <x-label for="afinity" :value="__('Afinidad:')"/>
-                <select id="afinity" class="block mt-1 w-full rounded-md" name="afinity" required>
-                    <option value="">{{ __('Seleccione una opción') }}</option>
-                    <option value="1" {{ isset($teacher->afinity) && $teacher->afinity == 1 ? 'selected' : '' }}>
-                        {{ __('Sí') }}</option>
-                    <option value="0" {{ isset($teacher->afinity) && $teacher->afinity == 0 ? 'selected' : '' }}>
-                        {{ __('No') }}</option>
-                </select>
-            </div>
         </div>
         <div class="flex justify-between">
             <x-button id="prev-to-contact" type="button">

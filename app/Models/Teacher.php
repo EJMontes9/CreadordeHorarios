@@ -34,7 +34,6 @@ class Teacher extends Model
         'specialty',
         'researcher',
         'contract_hours',
-        'afinity',
         'period',
         'teacher_schedule_hours',
         'class_preparation_hours',

@@ -132,10 +132,6 @@
                                     <p class="font-semibold">Carrera:</p>
                                     <p>{{ $teacher->career ?? '' }}</p>
                                 </div>
-                                <div>
-                                    <p class="font-semibold">Afinidad:</p>
-                                    <p>{{ $teacher->afinity ? 'Sí' : 'No' }}</p>
-                                </div>
                             </div>
                         </div>
 

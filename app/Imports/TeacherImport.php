@@ -60,7 +60,6 @@ class TeacherImport implements ToModel, WithHeadingRow
             'specialty' => $row['specialty'],
             'researcher' => $row['researcher'],
             'contract_hours' => $row['contract_hours'],
-            'afinity' => $row['afinity'],
             'period' => $row['period'],
             'teacher_schedule_hours' => $row['teacher_schedule_hours'],
             'class_preparation_hours' => $row['class_preparation_hours'],
