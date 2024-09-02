@@ -145,7 +145,7 @@
                                     <div class="border p-4 rounded-lg">
                                         <p><strong>Nombre:</strong> {{ $subject->name }}</p>
                                         <p><strong>Ciclo:</strong> {{ $subject->cycle }}</p>
-                                        <p><strong>Afinidad:</strong> {{ $subject->afinity }}</p>
+                                        <p><strong>Afinidad:</strong> {{ $subject->affinity }}</p>
                                     </div>
                                 @endforeach
                             </div>
