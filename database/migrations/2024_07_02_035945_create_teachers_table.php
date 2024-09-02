@@ -16,26 +16,26 @@ return new class extends Migration
             $table->string('ci')->unique();
             $table->string('first_name');
             $table->string('last_name');
-            $table->date('date_of_birth');
-            $table->integer('age');
-            $table->string('gender');
-            $table->string('nacionality'); //Está mal escrito
-            $table->string('num_cellphone');
-            $table->string('email');
-            $table->string('email_ug');
-            $table->string('dedication');
-            $table->string('contract_type');
-            $table->string('den_puesto');
-            $table->text('third_level_title');
-            $table->text('fourth_level_title');
-            $table->date('date_of_admission');
-            $table->string('career');
-            $table->string('rol');
-            $table->string('master_degree');
-            $table->string('doctorate');
-            $table->string('specialty');
-            $table->string('researcher');
-            $table->integer('contract_hours');
+            $table->date('date_of_birth')->nullable();
+            $table->integer('age')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('nacionality')->nullable(); //Está mal escrito
+            $table->string('num_cellphone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('email_ug')->nullable();
+            $table->string('dedication')->nullable();
+            $table->string('contract_type')->nullable();
+            $table->string('den_puesto')->nullable();
+            $table->text('third_level_title')->nullable();
+            $table->text('fourth_level_title')->nullable();
+            $table->date('date_of_admission')->nullable();
+            $table->string('career')->nullable();
+            $table->string('rol')->nullable();
+            $table->string('master_degree')->nullable();
+            $table->string('doctorate')->nullable();
+            $table->string('specialty')->nullable();
+            $table->string('researcher')->nullable();
+            $table->integer('contract_hours')->nullable();
             $table->timestamps();
         });
     }

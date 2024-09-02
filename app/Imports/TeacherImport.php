@@ -60,23 +60,6 @@ class TeacherImport implements ToModel, WithHeadingRow
             'specialty' => $row['specialty'],
             'researcher' => $row['researcher'],
             'contract_hours' => $row['contract_hours'],
-            'period' => $row['period'],
-            'teacher_schedule_hours' => $row['teacher_schedule_hours'],
-            'class_preparation_hours' => $row['class_preparation_hours'],
-            'research_hours' => $row['research_hours'],
-            'management_hours' => $row['management_hours'],
-            'social_knowledge_management_hours' => $row['social_knowledge_management_hours'],
-            'pre_professional_practice_tutoring_hours' => $row['pre_professional_practice_tutoring_hours'],
-            'academic_tutoring_hours' => $row['academic_tutoring_hours'],
-            'thesis_tutoring_hours' => $row['thesis_tutoring_hours'],
-            'individual_tutoring_hours' => $row['individual_tutoring_hours'],
-            'group_tutoring_hours' => $row['group_tutoring_hours'],
-            'complex_thesis_tutoring_hours' => $row['complex_thesis_tutoring_hours'],
-            'community_practice_tutoring_hours' => $row['community_practice_tutoring_hours'],
-            'distributive_hours' => $row['distributive_hours'],
-            'utah_hours' => $row['utah_hours'],
-            'academic_hours' => $row['academic_hours'],
-            'managements' => $row['managements'],
         ]);
     }
 
@@ -92,16 +75,21 @@ class TeacherImport implements ToModel, WithHeadingRow
             return $calculatedDate->format('Y-m-d');
         }
 
-        try {
-            $formattedDate = Carbon::createFromFormat('m/d/Y', $date);
-            return $formattedDate->format('Y-m-d');
-        } catch (\Exception $e) {
+        $formats = ['d/m/Y', 'm/d/Y', 'Y-m-d'];
+
+        foreach ($formats as $format) {
             try {
-                $formattedDate = Carbon::createFromFormat('Y-m-d', $date);
+                $formattedDate = Carbon::createFromFormat($format, $date);
+                //Mostrar el dato en el log
+                Log::info('Fecha formateada:', ['date' => $date, 'formattedDate' => $formattedDate->format('Y-m-d')]);
                 return $formattedDate->format('Y-m-d');
             } catch (\Exception $e) {
-                return null;
+                // No hacer nada, intentar el siguiente formato
             }
         }
+
+        // Si no coincide con ningún formato
+
+        return null;
     }
 }

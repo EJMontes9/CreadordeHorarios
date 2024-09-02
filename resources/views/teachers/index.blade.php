@@ -378,7 +378,6 @@
             </div>
         </div>
     </div>
-
     <script>
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
@@ -394,5 +393,4 @@
             evt.currentTarget.classList.add("text-blue-700", "dark:text-blue-500");
         }
     </script>
-
 </x-app-layout>
