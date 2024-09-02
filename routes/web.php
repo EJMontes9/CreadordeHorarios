@@ -48,6 +48,7 @@ Route::middleware([
     Route::post('/import/teachers', [ExcelController::class, 'importTeachers'])->name('teachers.import');
     Route::post('/import/subjects', [ExcelController::class, 'importSubjects'])->name('subjects.import');
     Route::post('/import/projects', [ExcelController::class, 'importProjects'])->name('projects.import');
+    Route::post('/import/detail', [ExcelController::class, 'importProjects'])->name('detail.import');
 });
 
 

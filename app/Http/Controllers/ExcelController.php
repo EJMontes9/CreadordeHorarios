@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\ProjectImport;
 use App\Imports\SubjectImport;
+use App\Imports\TeacherDetailImport;
 use App\Imports\TeacherImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -59,6 +60,23 @@ class ExcelController extends Controller
         } catch (\Exception $e) {
             Log::error('Error al importar los datos de proyectos:', ['exception' => $e]);
             return back()->with('error', 'Error al importar los datos de proyectos: ' . $e->getMessage());
+        }
+    }
+
+    public function importDetails(Request $request)
+    {
+        $file = $request->file('file');
+        // Leer y registrar las primeras filas del archivo
+        $data = Excel::toArray([], $file);
+
+        Log::info('Contenido del archivo Excel:', ['data' => $data]);
+
+        try {
+            Excel::import(new TeacherDetailImport(), $file);
+            return back()->with('success', 'Datos de materias importados exitosamente.');
+        } catch (\Exception $e) {
+            Log::error('Error al importar los datos de materias:', ['exception' => $e]);
+            return back()->with('error', 'Error al importar los datos de materias: ' . $e->getMessage());
         }
     }
 }

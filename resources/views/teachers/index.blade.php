@@ -251,6 +251,7 @@
                     <button class="tab-link p-4 text-gray-600 dark:text-gray-400" onclick="openTab(event, 'profesores')">Importar Profesores</button>
                     <button class="tab-link p-4 text-gray-600 dark:text-gray-400" onclick="openTab(event, 'materias')">Importar Materias</button>
                     <button class="tab-link p-4 text-gray-600 dark:text-gray-400" onclick="openTab(event, 'proyectos')">Importar Proyectos</button>
+                    <button class="tab-link p-4 text-gray-600 dark:text-gray-400" onclick="openTab(event, 'detalles')">Importar Detalles</button>
                 </div>
                 <form method="POST" action="{{ route('teachers.import') }}" enctype="multipart/form-data" id="profesores"
                 class="tab-content">
@@ -321,6 +322,35 @@
                     <!-- Modal body -->
                     <div class="p-4 md:p-5 space-y-2">
                         <p class="text-2xl">Importar Proyectos</p>
+                        <!-- Modal body -->
+                        <div class="px-4 md:p-5">
+                            @csrf
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                   for="file_input">Seleccione el archivo a importar</label>
+                            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                   aria-describedby="file_input_help" id="file_input" type="file" name="file" required>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">Solo se
+                                aceptan archivos Excel (MAX. 2MB).</p>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <button type="submit"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Importar
+                        </button>
+                        <button data-modal-hide="default-modal" type="button"
+                                class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+
+                <form method="POST" action="{{ route('detail.import') }}" enctype="multipart/form-data" id="detalles"
+                      class="tab-content hidden">
+                    <!-- Modal body -->
+                    <div class="p-4 md:p-5 space-y-2">
+                        <p class="text-2xl">Importar Detalles</p>
                         <!-- Modal body -->
                         <div class="px-4 md:p-5">
                             @csrf
