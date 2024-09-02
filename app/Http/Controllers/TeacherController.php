@@ -6,6 +6,7 @@ use App\Exports\TeachersExport;
 use App\Models\Project;
 use App\Models\Subject;
 use App\Models\Teacher;
+use App\Models\TeacherDetail;
 use App\Models\TeachingHour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -79,24 +80,31 @@ class TeacherController extends Controller
             'specialty' => $request->input('specialty'),
             'researcher' => $request->input('researcher'),
             'contract_hours' => $request->input('contract_hours'),
-            'period' => $request->input('period'),
-            'teacher_schedule_hours' => $request->input('teacher_schedule_hours'),
-            'class_preparation_hours' => $request->input('class_preparation_hours'),
-            'research_hours' => $request->input('research_hours'),
-            'management_hours' => $request->input('management_hours'),
-            'social_knowledge_management_hours' => $request->input('social_knowledge_management_hours'),
-            'pre_professional_practice_tutoring_hours' => $request->input('pre_professional_practice_tutoring_hours'),
-            'academic_tutoring_hours' => $request->input('academic_tutoring_hours'),
-            'thesis_tutoring_hours' => $request->input('thesis_tutoring_hours'),
-            'individual_tutoring_hours' => $request->input('individual_tutoring_hours'),
-            'group_tutoring_hours' => $request->input('group_tutoring_hours'),
-            'complex_thesis_tutoring_hours' => $request->input('complex_thesis_tutoring_hours'),
-            'community_practice_tutoring_hours' => $request->input('community_practice_tutoring_hours'),
-            'distributive_hours' => $request->input('distributive_hours'),
-            'utah_hours' => $request->input('utah_hours'),
-            'academic_hours' => $request->input('academic_hours'),
-            'managements' => $request->input('managements'),
         ]);
+
+        //crear el TeacherDetail
+        foreach ($request->input('details') as $TeacherDetailData) {
+            TeacherDetail::create([
+                'teacher_ci' => $teacher->ci,
+                'period' => $TeacherDetailData['period'],
+                'teacher_schedule_hours' => $TeacherDetailData['teacher_schedule_hours'],
+                'class_preparation_hours' => $TeacherDetailData['class_preparation_hours'],
+                'research_hours' => $TeacherDetailData['research_hours'],
+                'management_hours' => $TeacherDetailData['management_hours'],
+                'social_knowledge_management_hours' => $TeacherDetailData['social_knowledge_management_hours'],
+                'pre_professional_practice_tutoring_hours' => $TeacherDetailData['pre_professional_practice_tutoring_hours'],
+                'academic_tutoring_hours' => $TeacherDetailData['academic_tutoring_hours'],
+                'thesis_tutoring_hours' => $TeacherDetailData['thesis_tutoring_hours'],
+                'individual_tutoring_hours' => $TeacherDetailData['individual_tutoring_hours'],
+                'group_tutoring_hours' => $TeacherDetailData['group_tutoring_hours'],
+                'complex_thesis_tutoring_hours' => $TeacherDetailData['complex_thesis_tutoring_hours'],
+                'community_practice_tutoring_hours' => $TeacherDetailData['community_practice_tutoring_hours'],
+                'distributive_hours' => $TeacherDetailData['distributive_hours'],
+                'utah_hours' => $TeacherDetailData['utah_hours'],
+                'academic_hours' => $TeacherDetailData['academic_hours'],
+                'managements' => $TeacherDetailData['managements'],
+            ]);
+        }
 
         // Crear el proyecto
         $project = Project::create([
@@ -123,16 +131,15 @@ class TeacherController extends Controller
 
     public function show(Teacher $teacher)
     {
-        //tomar del objeto teacher el ci y comparar con la tabla historic el campo IDENTIFICACION, si son iguales mostrar todos los datos y guardarlos en la variable $teacher
-
+        // Tomar del objeto teacher el ci y comparar con la tabla historic el campo IDENTIFICACION, si son iguales mostrar todos los datos y guardarlos en la variable $teacher
         $teachers = DB::table('teachers')
             ->join('historic', 'teachers.ci', '=', 'historic.IDENTIFICACION')
             ->select('teachers.*', 'historic.*')
             ->where('teachers.ci', '=', $teacher->ci)
             ->get();
 
-        // Cargar las materias y proyectos relacionados
-        $teacher->load(['subjects', 'projects']);
+        // Cargar las materias, proyectos y detalles relacionados
+        $teacher->load(['subjects', 'projects', 'details']);
 
         $otherOptions = ['1' => '1', '2' => '2', '3' => '3', 'none' => 'Ninguno'];
 

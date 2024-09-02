@@ -34,23 +34,6 @@ class Teacher extends Model
         'specialty',
         'researcher',
         'contract_hours',
-        'period',
-        'teacher_schedule_hours',
-        'class_preparation_hours',
-        'research_hours',
-        'management_hours',
-        'social_knowledge_management_hours',
-        'pre_professional_practice_tutoring_hours',
-        'academic_tutoring_hours',
-        'thesis_tutoring_hours',
-        'individual_tutoring_hours',
-        'group_tutoring_hours',
-        'complex_thesis_tutoring_hours',
-        'community_practice_tutoring_hours',
-        'distributive_hours',
-        'utah_hours',
-        'academic_hours',
-        'managements',
     ];
 
     /**
@@ -75,6 +58,11 @@ class Teacher extends Model
     public function projects()
     {
         return $this->hasMany(Project::class, 'teacher_id', 'ci');
+    }
+
+    public function details()
+    {
+        return $this->hasMany(TeacherDetail::class, 'teacher_ci', 'ci');
     }
 
 }

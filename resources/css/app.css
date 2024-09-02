@@ -2,9 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-/*nueva linea*/
-@import '~bootstrap/dist/css/bootstrap.min.css';
-
-[x-cloak] {
-    display: none;
-}

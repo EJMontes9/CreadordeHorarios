@@ -1,23 +1,23 @@
 <div class="flex justify-center">
     <ol id="progress-bar" class="flex item-center w-full mb-4 sm:mb-5 ml-7 mr-3">
         <li
-            class="step flex w-1/4 items-center justify-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
+                class="step flex w-1/4 items-center justify-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
             <span class="text-center mx-5">Información Personal</span>
         </li>
         <li
-            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+                class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <span class="text-center mx-5">Contactos</span>
         </li>
         <li
-            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+                class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <span class="text-center mx-5">Información Académica</span>
         </li>
         <li
-            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+                class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <span class="text-center mx-5">Información de Materias</span>
         </li>
         <li
-            class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+                class="step flex w-1/4 items-center justify-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <span class="text-center mx-5">Información de Proyectos</span>
         </li>
         <li class="step flex items-center w-1/4 justify-center">
@@ -184,7 +184,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                            {{ isset($teacher->master_degree) && $teacher->master_degree == $value ? 'selected' : '' }}>
+                                {{ isset($teacher->master_degree) && $teacher->master_degree == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -195,7 +195,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                            {{ isset($teacher->doctorate) && $teacher->doctorate == $value ? 'selected' : '' }}>
+                                {{ isset($teacher->doctorate) && $teacher->doctorate == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -206,7 +206,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                            {{ isset($teacher->specialty) && $teacher->specialty == $value ? 'selected' : '' }}>
+                                {{ isset($teacher->specialty) && $teacher->specialty == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -217,7 +217,7 @@
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     @foreach ($otherOptions as $value => $label)
                         <option value="{{ $value }}"
-                            {{ isset($teacher->researcher) && $teacher->researcher == $value ? 'selected' : '' }}>
+                                {{ isset($teacher->researcher) && $teacher->researcher == $value ? 'selected' : '' }}>
                             {{ $label }}</option>
                     @endforeach
                 </select>
@@ -253,34 +253,66 @@
     </div>
 
     <!-- Información de Materias -->
-<div id="section-subjects" class="hidden border border-blue-200 shadow p-4 rounded-2xl my-5">
-    <div class="flex flex-row mb-3 mt-2">
-        <div class="w-full">
-            <h3 class="text-center font-semibold text-lg">INFORMACIÓN DE MATERIAS</h3>
+    <div id="section-subjects" class="hidden border border-blue-200 shadow p-4 rounded-2xl my-5">
+        <div class="flex flex-row mb-3 mt-2">
+            <div class="w-full">
+                <h3 class="text-center font-semibold text-lg">INFORMACIÓN DE MATERIAS</h3>
+            </div>
         </div>
-    </div>
 
-    <div id="subjects-container">
-        @if(isset($teacher) && $teacher->subjects)
-            @foreach($teacher->subjects as $subject)
+        <div id="subjects-container">
+            @if(isset($teacher) && $teacher->subjects)
+                @foreach($teacher->subjects as $subject)
+                    <div class="flex flex-col sm:flex-row mb-3 subject-item">
+                        <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                            <x-label for="subject_name" :value="__('Nombre de la Materia:')"/>
+                            <x-input id="subject_name" class="block mt-1 w-full" type="text"
+                                     name="subjects[{{ $loop->index }}][name]"
+                                     value="{{ $subject->name }}" required/>
+                        </div>
+                        <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                            <x-label for="subject_cycle" :value="__('Ciclo:')"/>
+                            <x-input id="subject_cycle" class="block mt-1 w-full" type="text"
+                                     name="subjects[{{ $loop->index }}][cycle]"
+                                     value="{{ $subject->cycle }}" required/>
+                        </div>
+                        <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
+                            <x-label for="subject_affinity" :value="__('Afinidad:')"/>
+                            <select id="subject_affinity" class="block mt-1 w-full rounded-md"
+                                    name="subjects[{{ $loop->index }}][affinity]"
+                                    required>
+                                <option value="">{{ __('Seleccione una opción') }}</option>
+                                <option value="1" {{ $subject->affinity == 1 ? 'selected' : '' }}>{{ __('Sí') }}</option>
+                                <option value="0" {{ $subject->affinity == 0 ? 'selected' : '' }}>{{ __('No') }}</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center">
+                            <x-button type="button" class="remove-subject bg-red-500 hover:bg-red-600 text-white">
+                                Eliminar2
+                            </x-button>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <!-- Código para manejar el caso de creación sin materias -->
                 <div class="flex flex-col sm:flex-row mb-3 subject-item">
                     <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
                         <x-label for="subject_name" :value="__('Nombre de la Materia:')"/>
-                        <x-input id="subject_name" class="block mt-1 w-full" type="text" name="subjects[{{ $loop->index }}][name]"
-                                 value="{{ $subject->name }}" required/>
+                        <x-input id="subject_name" class="block mt-1 w-full" type="text" name="subjects[0][name]"
+                                 required/>
                     </div>
                     <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
                         <x-label for="subject_cycle" :value="__('Ciclo:')"/>
-                        <x-input id="subject_cycle" class="block mt-1 w-full" type="text" name="subjects[{{ $loop->index }}][cycle]"
-                                 value="{{ $subject->cycle }}" required/>
+                        <x-input id="subject_cycle" class="block mt-1 w-full" type="text" name="subjects[0][cycle]"
+                                 required/>
                     </div>
                     <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
                         <x-label for="subject_affinity" :value="__('Afinidad:')"/>
-                        <select id="subject_affinity" class="block mt-1 w-full rounded-md" name="subjects[{{ $loop->index }}][affinity]"
+                        <select id="subject_affinity" class="block mt-1 w-full rounded-md" name="subjects[0][affinity]"
                                 required>
                             <option value="">{{ __('Seleccione una opción') }}</option>
-                            <option value="1" {{ $subject->affinity == 1 ? 'selected' : '' }}>{{ __('Sí') }}</option>
-                            <option value="0" {{ $subject->affinity == 0 ? 'selected' : '' }}>{{ __('No') }}</option>
+                            <option value="1">{{ __('Sí') }}</option>
+                            <option value="0">{{ __('No') }}</option>
                         </select>
                     </div>
                     <div class="flex items-center">
@@ -289,50 +321,21 @@
                         </x-button>
                     </div>
                 </div>
-            @endforeach
-        @else
-            <!-- Código para manejar el caso de creación sin materias -->
-            <div class="flex flex-col sm:flex-row mb-3 subject-item">
-                <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
-                    <x-label for="subject_name" :value="__('Nombre de la Materia:')"/>
-                    <x-input id="subject_name" class="block mt-1 w-full" type="text" name="subjects[0][name]"
-                             required/>
-                </div>
-                <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
-                    <x-label for="subject_cycle" :value="__('Ciclo:')"/>
-                    <x-input id="subject_cycle" class="block mt-1 w-full" type="text" name="subjects[0][cycle]"
-                             required/>
-                </div>
-                <div class="flex flex-col w-full sm:w-1/3 sm:mr-3 mb-3 sm:mb-0">
-                    <x-label for="subject_affinity" :value="__('Afinidad:')"/>
-                    <select id="subject_affinity" class="block mt-1 w-full rounded-md" name="subjects[0][affinity]"
-                            required>
-                        <option value="">{{ __('Seleccione una opción') }}</option>
-                        <option value="1">{{ __('Sí') }}</option>
-                        <option value="0">{{ __('No') }}</option>
-                    </select>
-                </div>
-                <div class="flex items-center">
-                    <x-button type="button" class="remove-subject bg-red-500 hover:bg-red-600 text-white">
-                        Eliminar2
-                    </x-button>
-                </div>
-            </div>
-        @endif
-    </div>
+            @endif
+        </div>
 
-    <div class="flex justify-between">
-        <x-button id="prev-to-academic" type="button">
-            {{ __('Regresar') }}
-        </x-button>
-        <x-button class="bg-green-500 hover:bg-green-600 text-white" id="add-subject" type="button">
-            {{ __('Agregar Materia') }}
-        </x-button>
-        <x-button id="next-to-project" type="button">
-            {{ __('Siguiente') }}
-        </x-button>
+        <div class="flex justify-between">
+            <x-button id="prev-to-academic" type="button">
+                {{ __('Regresar') }}
+            </x-button>
+            <x-button class="bg-green-500 hover:bg-green-600 text-white" id="add-subject" type="button">
+                {{ __('Agregar Materia') }}
+            </x-button>
+            <x-button id="next-to-project" type="button">
+                {{ __('Siguiente') }}
+            </x-button>
+        </div>
     </div>
-</div>
 
     <!-- Información de Proyecto -->
     <div id="section-project" class="hidden border border-blue-200 shadow p-4 rounded-2xl my-5">
@@ -360,9 +363,9 @@
                         required>
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     <option
-                        value="1" {{ isset($teacher->projects[0]->research_project) && $teacher->projects[0]->research_project == 1 ? 'selected' : '' }}>{{ __('Sí') }}</option>
+                            value="1" {{ isset($teacher->projects[0]->research_project) && $teacher->projects[0]->research_project == 1 ? 'selected' : '' }}>{{ __('Sí') }}</option>
                     <option
-                        value="0" {{ isset($teacher->projects[0]->research_project) && $teacher->projects[0]->research_project == 0 ? 'selected' : '' }}>{{ __('No') }}</option>
+                            value="0" {{ isset($teacher->projects[0]->research_project) && $teacher->projects[0]->research_project == 0 ? 'selected' : '' }}>{{ __('No') }}</option>
                 </select>
             </div>
             <div class="flex flex-col w-full sm:w-1/2 sm:mr-3 mb-3 sm:mb-0">
@@ -370,9 +373,9 @@
                 <select id="position" class="block mt-1 w-full rounded-md" name="project[position]" required>
                     <option value="">{{ __('Seleccione una opción') }}</option>
                     <option
-                        value="Docente investigador" {{ isset($teacher->projects[0]->position) && $teacher->projects[0]->position == 'Docente investigador' ? 'selected' : '' }}>{{ __('Docente investigador') }}</option>
+                            value="Docente investigador" {{ isset($teacher->projects[0]->position) && $teacher->projects[0]->position == 'Docente investigador' ? 'selected' : '' }}>{{ __('Docente investigador') }}</option>
                     <option
-                        value="Director" {{ isset($teacher->projects[0]->position) && $teacher->projects[0]->position == 'Director' ? 'selected' : '' }}>{{ __('Director') }}</option>
+                            value="Director" {{ isset($teacher->projects[0]->position) && $teacher->projects[0]->position == 'Director' ? 'selected' : '' }}>{{ __('Director') }}</option>
                 </select>
             </div>
         </div>
@@ -394,110 +397,105 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap mb-3">
-            <div class="flex flex-col w-full md:w-1/3 mr-3 mb-3">
-                <x-label for="period" :value="__('Periodo:')"/>
-                <x-input id="period" class="block mt-1 w-full" type="text" name="period"
-                         value="{{ $teacher->period ?? '' }}" required/>
-            </div>
-            <div class="flex flex-col w-full md:w-1/3 mr-3 mb-3">
-                <x-label for="teacher_schedule_hours" :value="__('Horas Docente Horario')"/>
-                <x-input id="teacher_schedule_hours" class="block mt-1 w-full no-spin" type="number"
-                         name="teacher_schedule_hours" value="{{ $teacher->teacher_schedule_hours ?? '' }}" required/>
-            </div>
-            <div class="flex flex-col w-full md:w-1/3 mr-3 mb-3">
-                <x-label for="class_preparation_hours" :value="__('Horas Preparación Clases:')"/>
-                <x-input id="class_preparation_hours" class="block mt-1 w-full no-spin" type="number"
-                         name="class_preparation_hours" value="{{ $teacher->class_preparation_hours ?? '' }}" required/>
-            </div>
+
+        <div id="details-container">
+            @if(isset($teacher) && $teacher->details)
+                @foreach($teacher->details as $detail)
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-3 detail-item border border-gray-300 p-4 rounded-lg">
+                        @foreach([
+                            'period' => 'Periodo',
+                            'teacher_schedule_hours' => 'Horas Docente Horario',
+                            'class_preparation_hours' => 'Horas Preparación de Clases',
+                            'research_hours' => 'Horas Investigación',
+                            'management_hours' => 'Horas de Gestión',
+                            'social_knowledge_management_hours' => 'Horas de Gestión de Conocimiento Social',
+                            'pre_professional_practice_tutoring_hours' => 'Horas de Tutoria Práctica Pre Profesional',
+                            'academic_tutoring_hours' => 'Horas de Tutoría Académica',
+                            'thesis_tutoring_hours' => 'Horas de Tutoría de Tesis',
+                            'individual_tutoring_hours' => 'Horas de Tutoría Individual',
+                            'group_tutoring_hours' => 'Horas de Tutoría Grupal',
+                            'complex_thesis_tutoring_hours' => 'Horas de Tutoría de Tesis Compleja',
+                            'community_practice_tutoring_hours' => 'Horas de Tutoría de Práctica Comunitaria',
+                            'distributive_hours' => 'Horas Distributivas',
+                            'utah_hours' => 'Horas Utah',
+                            'academic_hours' => 'Horas Académicas',
+                            'managements' => 'Gestiones'
+                        ] as $field => $label)
+                            <div class="flex flex-col justify-end">
+                                <x-label for="{{ $field }}" class="mb-1" :value="__($label)"/>
+                                <x-input id="{{ $field }}" class="mt-auto w-full" type="{{ str_contains($field, 'hours') ? 'number' : 'text' }}"
+                                         name="details[{{ $loop->parent->index }}][{{ $field }}]"
+                                         value="{{ $detail->{$field} }}" required/>
+                            </div>
+                        @endforeach
+
+                        <!-- Botón Eliminar -->
+                        <div class="flex items-center justify-center">
+                            <x-button type="button" class="remove-detail bg-red-500 hover:bg-red-600 text-white">
+                                Eliminar
+                            </x-button>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <!-- Código para manejar el caso de creación sin detalles -->
+                <div class="mb-3 detail-item border border-gray-300 p-4 rounded-lg">
+                    <!-- Primera fila de campos -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-9 gap-4">
+                        @foreach([
+                            'period' => 'Periodo',
+                            'teacher_schedule_hours' => 'Horas Docente Horario',
+                            'class_preparation_hours' => 'Horas Preparación de Clases',
+                            'research_hours' => 'Horas Investigación',
+                            'management_hours' => 'Horas de Gestión',
+                            'social_knowledge_management_hours' => 'Horas de Gestión de Conocimiento Social',
+                            'pre_professional_practice_tutoring_hours' => 'Horas de Tutoria Práctica Pre Profesional',
+                            'academic_tutoring_hours' => 'Horas de Tutoría Académica',
+                            'thesis_tutoring_hours' => 'Horas de Tutoría de Tesis'
+                        ] as $field => $label)
+                            <div class="flex flex-col justify-end">
+                                <x-label for="{{ $field }}" class="mb-1" :value="__($label)"/>
+                                <x-input id="{{ $field }}" class="w-full mt-auto" type="{{ in_array($field, ['managements', 'period']) ? 'text' : 'number' }}"
+                                         name="details[0][{{ $field }}]" required/>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <!-- Segunda fila de campos -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-9 gap-4 mt-4">
+                        @foreach([
+                            'individual_tutoring_hours' => 'Horas de Tutoría Individual',
+                            'group_tutoring_hours' => 'Horas de Tutoría Grupal',
+                            'complex_thesis_tutoring_hours' => 'Horas de Tutoría de Tesis Compleja',
+                            'community_practice_tutoring_hours' => 'Horas de Tutoría de Práctica Comunitaria',
+                            'distributive_hours' => 'Horas Distributivas',
+                            'utah_hours' => 'Horas Utah',
+                            'academic_hours' => 'Horas Académicas',
+                            'managements' => 'Gestiones'
+                        ] as $field => $label)
+                            <div class="flex flex-col justify-end">
+                                <x-label for="{{ $field }}" class="mb-1" :value="__($label)"/>
+                                <x-input id="{{ $field }}" class="w-full mt-auto" type="{{ in_array($field, ['managements', 'period']) ? 'text' : 'number' }}"
+                                         name="details[0][{{ $field }}]" required/>
+                            </div>
+                        @endforeach
+
+                        <!-- Botón Eliminar -->
+                        <div class="flex items-center justify-center">
+                            <x-button type="button" class="remove-detail bg-red-500 hover:bg-red-600 text-white">
+                                Eliminar
+                            </x-button>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
 
-        <div class="flex flex-wrap mb-3">
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="research_hours" :value="__('Horas Investigación:')"/>
-                <x-input id="research_hours" class="block mt-1 w-full no-spin" type="number" name="research_hours"
-                         value="{{ $teacher->research_hours ?? '' }}"/>
-            </div>
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="management_hours" :value="__('Horas Gestión:')"/>
-                <x-input id="management_hours" class="block mt-1 w-full no-spin" type="number" name="management_hours"
-                         value="{{ $teacher->management_hours ?? '' }}"/>
-            </div>
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="social_knowledge_management_hours" :value="__('Horas Gestión Social Conocimiento:')"/>
-                <x-input id="social_knowledge_management_hours" class="block mt-1 w-full no-spin" type="number"
-                         name="social_knowledge_management_hours"
-                         value="{{ $teacher->social_knowledge_management_hours ?? '' }}"/>
-            </div>
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="pre_professional_practice_tutoring_hours"
-                         :value="__('Horas Tutorías Prácticas Pre Profesionales:')"/>
-                <x-input id="pre_professional_practice_tutoring_hours" class="block mt-1 w-full no-spin" type="number"
-                         name="pre_professional_practice_tutoring_hours"
-                         value="{{ $teacher->pre_professional_practice_tutoring_hours ?? '' }}"/>
-            </div>
-        </div>
+        <x-button class="bg-green-500 hover:bg-green-600 text-white" id="add-detail" type="button">
+            {{ __('Agregar Detalle') }}
+        </x-button>
 
-        <div class="flex flex-wrap mb-3">
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="academic_tutoring_hours" :value="__('Horas Tutorías Académicas:')"/>
-                <x-input id="academic_tutoring_hours" class="block mt-1 w-full no-spin" type="number"
-                         name="academic_tutoring_hours" value="{{ $teacher->academic_tutoring_hours ?? '' }}"/>
-            </div>
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="thesis_tutoring_hours" :value="__('Horas Tutorías Titulación:')"/>
-                <x-input id="thesis_tutoring_hours" class="block mt-1 w-full no-spin" type="number"
-                         name="thesis_tutoring_hours" value="{{ $teacher->thesis_tutoring_hours ?? '' }}"/>
-            </div>
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="individual_tutoring_hours" :value="__('Horas Tutorías Individuales:')"/>
-                <x-input id="individual_tutoring_hours" class="block mt-1 w-full no-spin" type="number"
-                         name="individual_tutoring_hours" value="{{ $teacher->individual_tutoring_hours ?? '' }}"/>
-            </div>
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="group_tutoring_hours" :value="__('Horas Tutorías Grupales:')"/>
-                <x-input id="group_tutoring_hours" class="block mt-1 w-full no-spin" type="number"
-                         name="group_tutoring_hours" value="{{ $teacher->group_tutoring_hours ?? '' }}"/>
-            </div>
-        </div>
 
-        <div class="flex flex-wrap mb-3">
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="complex_thesis_tutoring_hours" :value="__('Horas Tutorías Titulación Complejivo:')"/>
-                <x-input id="complex_thesis_tutoring_hours" class="block mt-1 w-full no-spin" type="number"
-                         name="complex_thesis_tutoring_hours"
-                         value="{{ $teacher->complex_thesis_tutoring_hours ?? '' }}"/>
-            </div>
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="community_practice_tutoring_hours" :value="__('Horas Tutorías Prácticas Comunitarias:')"/>
-                <x-input id="community_practice_tutoring_hours" class="block mt-1 w-full no-spin" type="number"
-                         name="community_practice_tutoring_hours"
-                         value="{{ $teacher->community_practice_tutoring_hours ?? '' }}"/>
-            </div>
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="distributive_hours" :value="__('Horas Distributivo:')"/>
-                <x-input id="distributive_hours" class="block mt-1 w-full no-spin" type="number"
-                         name="distributive_hours" value="{{ $teacher->distributive_hours ?? '' }}"/>
-            </div>
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="utah_hours" :value="__('Horas UTAH:')"/>
-                <x-input id="utah_hours" class="block mt-1 w-full no-spin" type="number" name="utah_hours"
-                         value="{{ $teacher->utah_hours ?? '' }}"/>
-            </div>
-        </div>
-
-        <div class="flex flex-wrap mb-3">
-            <div class="flex flex-col w-full md:w-1/4 mr-3 mb-3">
-                <x-label for="academic_hours" :value="__('Horas Académico:')"/>
-                <x-input id="academic_hours" class="block mt-1 w-full no-spin" type="number" name="academic_hours"
-                         value="{{ $teacher->academic_hours ?? '' }}"/>
-            </div>
-            <div class="flex flex-col w-full md:w-3/4 mr-3 mb-3">
-                <x-label for="managements" :value="__('Gestiones:')"/>
-                <x-input id="managements" class="block mt-1 w-full" type="text" name="managements"
-                         value="{{ $teacher->managements ?? '' }}"/>
-            </div>
-        </div>
         <div class="flex justify-between">
             <x-button id="prev-to-project" type="button">
                 {{ __('Regresar') }}
@@ -746,5 +744,112 @@
         });
 
     });
+
+
+    document.getElementById('add-detail').addEventListener('click', function () {
+        let container = document.getElementById('details-container');
+        let index = container.children.length;
+        let template = `
+        <div class="mb-3 detail-item border border-gray-300 p-4 rounded-lg">
+            <!-- Primera fila de campos -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-9 gap-4">
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_period" :value="__('Periodo')"/>
+                    <x-input id="details_${index}_period" class="mt-auto w-full" type="text" name="details[${index}][period]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_teacher_schedule_hours" :value="__('Horas Docente Horario')"/>
+                    <x-input id="details_${index}_teacher_schedule_hours" class="mt-auto w-full" type="number" name="details[${index}][teacher_schedule_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_class_preparation_hours" :value="__('Horas Preparación de Clases')"/>
+                    <x-input id="details_${index}_class_preparation_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][class_preparation_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_research_hours" :value="__('Horas Investigación')"/>
+                    <x-input id="details_${index}_research_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][research_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_management_hours" :value="__('Horas de Gestión')"/>
+                    <x-input id="details_${index}_management_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][management_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_social_knowledge_management_hours" :value="__('Horas de Gestión de Conocimiento Social')"/>
+                    <x-input id="details_${index}_social_knowledge_management_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][social_knowledge_management_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_pre_professional_practice_tutoring_hours" :value="__('Horas de Tutoria Práctica Pre Profesional')"/>
+                    <x-input id="details_${index}_pre_professional_practice_tutoring_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][pre_professional_practice_tutoring_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_academic_tutoring_hours" :value="__('Horas de Tutoría Académica')"/>
+                    <x-input id="details_${index}_academic_tutoring_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][academic_tutoring_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_thesis_tutoring_hours" :value="__('Horas de Tutoría de Tesis')"/>
+                    <x-input id="details_${index}_thesis_tutoring_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][thesis_tutoring_hours]" required/>
+                </div>
+            </div>
+
+            <!-- Segunda fila de campos -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-9 gap-4 mt-4">
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_individual_tutoring_hours" :value="__('Horas de Tutoría Individual')"/>
+                    <x-input id="details_${index}_individual_tutoring_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][individual_tutoring_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_group_tutoring_hours" :value="__('Horas de Tutoría Grupal')"/>
+                    <x-input id="details_${index}_group_tutoring_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][group_tutoring_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_complex_thesis_tutoring_hours" :value="__('Horas de Tutoría de Tesis Compleja')"/>
+                    <x-input id="details_${index}_complex_thesis_tutoring_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][complex_thesis_tutoring_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_community_practice_tutoring_hours" :value="__('Horas de Tutoría de Práctica Comunitaria')"/>
+                    <x-input id="details_${index}_community_practice_tutoring_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][community_practice_tutoring_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_distributive_hours" :value="__('Horas Distributivas')"/>
+                    <x-input id="details_${index}_distributive_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][distributive_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_utah_hours" :value="__('Horas Utah')"/>
+                    <x-input id="details_${index}_utah_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][utah_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_academic_hours" :value="__('Horas Académicas')"/>
+                    <x-input id="details_${index}_academic_hours" class="mt-auto w-full no-spin" type="number" name="details[${index}][academic_hours]" required/>
+                </div>
+                <div class="flex flex-col justify-end">
+                    <x-label for="details_${index}_managements" :value="__('Gestiones')"/>
+                    <x-input id="details_${index}_managements" class="mt-auto w-full" type="text" name="details[${index}][managements]" required/>
+                </div>
+
+                <!-- Botón Eliminar -->
+                <div class="flex items-center justify-center">
+                    <x-button type="button" class="remove-detail bg-red-500 hover:bg-red-600 text-white">
+                        Eliminar
+                    </x-button>
+                </div>
+            </div>
+        </div>
+    `;
+        container.insertAdjacentHTML('beforeend', template);
+        attachDetailRemoveEvent();
+    });
+
+    function attachDetailRemoveEvent() {
+        document.querySelectorAll('.remove-detail').forEach(button => {
+            button.removeEventListener('click', handleRemoveDetail);
+            button.addEventListener('click', handleRemoveDetail);
+        });
+    }
+
+    function handleRemoveDetail(event) {
+        event.target.closest('.detail-item').remove();
+    }
+
+    attachDetailRemoveEvent();
 
 </script>

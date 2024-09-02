@@ -171,81 +171,86 @@
                             </div>
                         </div>
 
-                        <!-- Card para Información de Planificación -->
                         <div class="card border border-gray-300 shadow p-4 rounded-lg mb-4 hover:shadow-lg">
                             <h3 class="text-center font-semibold text-lg mb-4 cursor-pointer"
                                 @click="open = open === 3 ? null : 3">
                                 Información de Planificación
                             </h3>
-                            <div x-show="open === 3" x-transition class="grid grid-cols-2 gap-4 accordion-section">
-                                <div>
-                                    <p class="font-semibold">Periodo:</p>
-                                    <p>{{ $teacher->period ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Docente Horario:</p>
-                                    <p>{{ $teacher->teacher_schedule_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Preparación Clases:</p>
-                                    <p>{{ $teacher->class_preparation_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Investigación:</p>
-                                    <p>{{ $teacher->research_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Gestión:</p>
-                                    <p>{{ $teacher->management_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Gestión Social Conocimiento:</p>
-                                    <p>{{ $teacher->social_knowledge_management_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Tutorías Prácticas Pre Profesionales:</p>
-                                    <p>{{ $teacher->pre_professional_practice_tutoring_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Tutorías Académicas:</p>
-                                    <p>{{ $teacher->academic_tutoring_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Tutorías Titulación:</p>
-                                    <p>{{ $teacher->thesis_tutoring_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Tutorías Individuales:</p>
-                                    <p>{{ $teacher->individual_tutoring_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Tutorías Grupales:</p>
-                                    <p>{{ $teacher->group_tutoring_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Tutorías Titulación Complejivo:</p>
-                                    <p>{{ $teacher->complex_thesis_tutoring_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Tutorías Prácticas Comunitarias:</p>
-                                    <p>{{ $teacher->community_practice_tutoring_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Distributivo:</p>
-                                    <p>{{ $teacher->distributive_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas UTAH:</p>
-                                    <p>{{ $teacher->utah_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Horas Académico:</p>
-                                    <p>{{ $teacher->academic_hours ?? '' }}</p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold">Gestiones:</p>
-                                    <p>{{ $teacher->managements ?? '' }}</p>
-                                </div>
+                            <div x-show="open === 3" x-transition class="space-y-4 accordion-section">
+                                @foreach($teacher->details as $detail)
+                                    <div class="border border-gray-200 p-4 rounded-md">
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <p class="font-semibold">Periodo:</p>
+                                                <p>{{ $detail->period ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Docente Horario:</p>
+                                                <p>{{ $detail->teacher_schedule_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Preparación Clases:</p>
+                                                <p>{{ $detail->class_preparation_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Investigación:</p>
+                                                <p>{{ $detail->research_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Gestión:</p>
+                                                <p>{{ $detail->management_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Gestión Social Conocimiento:</p>
+                                                <p>{{ $detail->social_knowledge_management_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Tutorías Prácticas Pre Profesionales:</p>
+                                                <p>{{ $detail->pre_professional_practice_tutoring_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Tutorías Académicas:</p>
+                                                <p>{{ $detail->academic_tutoring_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Tutorías Titulación:</p>
+                                                <p>{{ $detail->thesis_tutoring_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Tutorías Individuales:</p>
+                                                <p>{{ $detail->individual_tutoring_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Tutorías Grupales:</p>
+                                                <p>{{ $detail->group_tutoring_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Tutorías Titulación Complejivo:</p>
+                                                <p>{{ $detail->complex_thesis_tutoring_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Tutorías Prácticas Comunitarias:</p>
+                                                <p>{{ $detail->community_practice_tutoring_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Distributivo:</p>
+                                                <p>{{ $detail->distributive_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas UTAH:</p>
+                                                <p>{{ $detail->utah_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Horas Académico:</p>
+                                                <p>{{ $detail->academic_hours ?? '' }}</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">Gestiones:</p>
+                                                <p>{{ $detail->managements ?? '' }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
 
@@ -496,7 +501,8 @@
                         </div>
                         <!-- Botón de Imprimir -->
                         <div class="text-center mt-4">
-                            <button onclick="printContent()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <button onclick="printContent()"
+                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                 Imprimir Información
                             </button>
                         </div>
@@ -531,7 +537,7 @@
     function printContent() {
         // Abrir todas las secciones
         var sections = document.querySelectorAll('.accordion-section');
-        sections.forEach(function(section) {
+        sections.forEach(function (section) {
             section.style.display = 'block';
         });
 
@@ -539,7 +545,7 @@
         window.print();
 
         // Restaurar el estado original después de imprimir
-        sections.forEach(function(section) {
+        sections.forEach(function (section) {
             section.style.display = '';
         });
     }
